@@ -102,7 +102,7 @@ android {
             storePassword FITCAT_RELEASE_STORE_PASSWORD
             keyAlias FITCAT_RELEASE_KEY_ALIAS
             keyPassword FITCAT_RELEASE_KEY_PASSWORD
-	}
+        }
     }
     splits {
         abi {
