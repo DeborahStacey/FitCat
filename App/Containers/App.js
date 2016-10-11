@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { Platform, Linking } from 'react-native'
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import DebugSettings from '../Config/DebugSettings'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 import '../I18n/I18n'
 
 if (__DEV__) {
@@ -24,6 +26,35 @@ const store = createStore()
  * We separate like this to play nice with React Native's hot reloading.
  */
 class App extends Component {
+  componentDidMount () {
+    if (Platform.OS === 'ios') {
+      // Event listeners only work on iOS apparently
+      Linking.addEventListener('url', this.handleDeepLink)
+    } else {
+      Linking.getInitialURL().then(url => {
+        if (url) {
+          const route = url.replace(/.*?:\/\//g, '')
+          console.log(route)
+
+          // TODO
+          NavigationActions.deviceInfo()
+        }
+      })
+    }
+  }
+
+  componentWillUnmount () {
+    Linking.removeEventListener('url', this.handleDeepLink)
+  }
+
+  handleDeepLink (e) {
+    const route = e.url.replace(/.*?:\/\//g, '')
+    console.log(route)
+
+    // TODO
+    NavigationActions.deviceInfo()
+  }
+
   render () {
     return (
       <Provider store={store}>
