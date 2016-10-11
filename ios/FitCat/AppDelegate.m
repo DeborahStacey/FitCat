@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 #import "RCTBundleURLProvider.h"
+#import "RCTLinkingManager.h"
 #import "RCTRootView.h"
 
 @implementation AppDelegate
@@ -33,5 +34,12 @@
   [self.window makeKeyAndVisible];
   return YES;
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(nullable NSString *)sourceApplication annotation:(nonnull id)annotation
+{
+  return [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+
 
 @end
