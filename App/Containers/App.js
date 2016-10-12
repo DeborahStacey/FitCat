@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import DebugSettings from '../Config/DebugSettings'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { default as OAuthManager } from '../Services/OAuthManager'
 import '../I18n/I18n'
 
 if (__DEV__) {
@@ -29,30 +29,36 @@ class App extends Component {
   componentDidMount () {
     if (Platform.OS === 'ios') {
       // Event listeners only work on iOS apparently
-      Linking.addEventListener('url', this.handleDeepLink)
+      Linking.addEventListener('url', this.handleDeepLinkIOS)
     } else {
+      // TODO: Handle promise rejection where url = null (i.e. launching the app normally)
       Linking.getInitialURL().then(url => {
-        if (url) {
-          const route = url.replace(/.*?:\/\//g, '')
-          console.log(route)
-
-          // TODO
-          NavigationActions.deviceInfo()
+        if (this.parseDeepLinkRoute(url) === 'oauth-callback') {
+          OAuthManager.parseFitbitAuthResponse(url)
         }
       })
     }
   }
 
   componentWillUnmount () {
-    Linking.removeEventListener('url', this.handleDeepLink)
+    Linking.removeEventListener('url', this.handleDeepLinkIOS)
   }
 
-  handleDeepLink (e) {
-    const route = e.url.replace(/.*?:\/\//g, '')
-    console.log(route)
+  handleDeepLinkIOS (e) {
+    // TODO: Handle promise rejection where e.url = null (i.e. launching the app normally)
+    if (this.parseDeepLinkRoute(e.url) === 'oauth-callback') {
+      OAuthManager.parseFitbitAuthResponse(e.url)
+    }
+  }
 
-    // TODO
-    NavigationActions.deviceInfo()
+  /**
+   * Strips out the scheme from the url returned with from a deep link
+   * and returns the identifier before the first hash.
+   *
+   * Example: "fitcat://oauth-callback#access-token..." => "oauth-callback"
+   */
+  parseDeepLinkRoute (url) {
+    return url.replace(/.*?:\/\//g, '').split('#')[0]
   }
 
   render () {
