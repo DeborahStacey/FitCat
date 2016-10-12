@@ -29,7 +29,7 @@ class App extends Component {
   componentDidMount () {
     if (Platform.OS === 'ios') {
       // Event listeners only work on iOS apparently
-      Linking.addEventListener('url', this.handleDeepLinkIOS)
+      Linking.addEventListener('url', this.handleDeepLinkIOS.bind(this))
     } else {
       // TODO: Handle promise rejection where url = null (i.e. launching the app normally)
       Linking.getInitialURL().then(url => {
