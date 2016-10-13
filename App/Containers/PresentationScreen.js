@@ -1,8 +1,9 @@
 import React from 'react'
 import { ScrollView, Text, Image, View } from 'react-native'
 import { Images } from '../Themes'
-// import RoundedButton from '../Components/RoundedButton'
+import RoundedButton from '../Components/RoundedButton'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
+import { default as OAuthManager } from '../Services/OAuthManager'
 
 // Styles
 import styles from './Styles/PresentationScreenStyle'
@@ -23,6 +24,10 @@ export default class PresentationScreen extends React.Component {
               Ignite provided the basis of what is here!
             </Text>
           </View>
+
+          <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
+            Connect FitBit Account
+          </RoundedButton>
 
           {/* <RoundedButton onPress={NavigationActions.componentExamples}>
             Component Examples Screen

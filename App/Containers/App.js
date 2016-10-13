@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { Platform, Linking } from 'react-native'
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import DebugSettings from '../Config/DebugSettings'
+import { default as OAuthManager } from '../Services/OAuthManager'
 import '../I18n/I18n'
 
 if (__DEV__) {
@@ -24,6 +26,41 @@ const store = createStore()
  * We separate like this to play nice with React Native's hot reloading.
  */
 class App extends Component {
+  componentDidMount () {
+    if (Platform.OS === 'ios') {
+      // Event listeners only work on iOS apparently
+      Linking.addEventListener('url', this.handleDeepLinkIOS.bind(this))
+    } else {
+      // TODO: Handle promise rejection where url = null (i.e. launching the app normally)
+      Linking.getInitialURL().then(url => {
+        if (this.parseDeepLinkRoute(url) === 'oauth-callback') {
+          OAuthManager.parseFitbitAuthResponse(url)
+        }
+      })
+    }
+  }
+
+  componentWillUnmount () {
+    Linking.removeEventListener('url', this.handleDeepLinkIOS)
+  }
+
+  handleDeepLinkIOS (e) {
+    // TODO: Handle promise rejection where e.url = null (i.e. launching the app normally)
+    if (this.parseDeepLinkRoute(e.url) === 'oauth-callback') {
+      OAuthManager.parseFitbitAuthResponse(e.url)
+    }
+  }
+
+  /**
+   * Strips out the scheme from the url returned with from a deep link
+   * and returns the identifier before the first hash.
+   *
+   * Example: "fitcat://oauth-callback#access-token..." => "oauth-callback"
+   */
+  parseDeepLinkRoute (url) {
+    return url.replace(/.*?:\/\//g, '').split('#')[0]
+  }
+
   render () {
     return (
       <Provider store={store}>
