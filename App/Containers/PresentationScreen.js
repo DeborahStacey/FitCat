@@ -2,8 +2,8 @@ import React from 'react'
 import { ScrollView, Text, Image, View } from 'react-native'
 import { Images } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
-// import { Actions as NavigationActions } from 'react-native-router-flux'
 import { default as OAuthManager } from '../Services/OAuthManager'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 // Styles
 import styles from './Styles/PresentationScreenStyle'
@@ -23,6 +23,9 @@ export default class PresentationScreen extends React.Component {
               Welcome to FitCat Hello World!
               Ignite provided the basis of what is here!
             </Text>
+            <RoundedButton onPress={NavigationActions.dashboard}>
+            Click me
+            </RoundedButton>
           </View>
 
           <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
