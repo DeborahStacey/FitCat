@@ -1,5 +1,6 @@
-import { AsyncStorage, Linking } from 'react-native'
+import { AsyncStorage, Platform, Linking } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import SafariView from 'react-native-safari-view'
 import { default as AppConfig } from '../Config/AppConfig'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
@@ -20,7 +21,17 @@ export default {
       `&expires_in=${AppConfig.FITBIT_EXPIRATION}` +
       `&state=${AppConfig.FITBIT_STATE}`
 
-    Linking.openURL(fitbitAuthUrl).catch(err => console.err('An error occurred', err))
+    if (Platform.OS === 'ios') {
+      SafariView.isAvailable()
+        .then(SafariView.show({
+          url: fitbitAuthUrl
+        }))
+        .catch(error => {
+          console.error(error)
+        })
+    } else {
+      Linking.openURL(fitbitAuthUrl).catch(err => console.err('An error occurred', err))
+    }
   },
 
   /**

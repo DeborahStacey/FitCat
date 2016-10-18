@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import DebugSettings from '../Config/DebugSettings'
+import SafariView from 'react-native-safari-view'
 import { default as OAuthManager } from '../Services/OAuthManager'
 import '../I18n/I18n'
 
@@ -47,6 +48,7 @@ class App extends Component {
   handleDeepLinkIOS (e) {
     // TODO: Handle promise rejection where e.url = null (i.e. launching the app normally)
     if (this.parseDeepLinkRoute(e.url) === 'oauth-callback') {
+      SafariView.dismiss()
       OAuthManager.parseFitbitAuthResponse(e.url)
     }
   }
