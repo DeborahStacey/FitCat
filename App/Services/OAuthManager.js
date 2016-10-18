@@ -21,14 +21,12 @@ export default {
       `&expires_in=${AppConfig.FITBIT_EXPIRATION}` +
       `&state=${AppConfig.FITBIT_STATE}`
 
-    if (Platform.OS === 'ios') {
-      SafariView.isAvailable()
-        .then(SafariView.show({
-          url: fitbitAuthUrl
-        }))
-        .catch(error => {
-          console.error(error)
-        })
+    if (Platform.OS === 'ios' && SafariView.isAvailable()) {
+      SafariView.show({
+        url: fitbitAuthUrl
+      }).catch(error => {
+        console.error(error)
+      })
     } else {
       Linking.openURL(fitbitAuthUrl).catch(err => console.err('An error occurred', err))
     }

@@ -48,7 +48,10 @@ class App extends Component {
   handleDeepLinkIOS (e) {
     // TODO: Handle promise rejection where e.url = null (i.e. launching the app normally)
     if (this.parseDeepLinkRoute(e.url) === 'oauth-callback') {
-      SafariView.dismiss()
+      if (SafariView.isAvailable()) {
+        SafariView.dismiss()
+      }
+
       OAuthManager.parseFitbitAuthResponse(e.url)
     }
   }
