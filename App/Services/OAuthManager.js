@@ -1,7 +1,7 @@
 import { AsyncStorage, Platform, Linking } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import SafariView from 'react-native-safari-view'
-import CustomTabs from 'react-native-custom-tabs'
+import { CustomTabs } from 'react-native-custom-tabs'
 import { default as AppConfig } from '../Config/AppConfig'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
