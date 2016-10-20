@@ -87,7 +87,14 @@
     ]
   },
   "jest": {
-    "preset": "jest-react-native"
+    "preset": "jest-react-native",
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "android.js",
+      "ios.js"
+    ]
   },
   "standard": {
     "parser": "babel-eslint",
