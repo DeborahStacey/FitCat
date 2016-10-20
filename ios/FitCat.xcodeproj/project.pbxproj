@@ -26,6 +26,7 @@
 		1BE87BD7257A492B870884A6 /* libSafariViewManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 313AD3635BF7450B8E2F39A4 /* libSafariViewManager.a */; };
 		2E0508DDB368400FB0A72DF5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD859BC497A4E60A18ED9C8 /* libRNDeviceInfo.a */; };
 		3DB5E99107A345F09B47312F /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8AA8FD390DF47F198BA192A /* libRNVectorIcons.a */; };
+		412E3C15DDB443BDAFEC4B31 /* libDBCustomTabs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D3F30D323D4BF48B634AB4 /* libDBCustomTabs.a */; };
 		71A6CC115432408482FD67C3 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4011ABC84204E9BB3425F96 /* MaterialIcons.ttf */; };
 		7894D65D3BE84D18B532EBFC /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE598709E91474589B27DFD /* libReactNativeConfig.a */; };
 		7DD903EF1BEF4FD7AA9754ED /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99F4E3320B4A47769641B40E /* Ionicons.ttf */; };
@@ -145,6 +146,13 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		3C4F10C21DB9007100EF0960 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C57FBA64164B45F1BBECCB2F /* ReactNativeCustomTabs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA7118681CC9158A0087DF95;
+			remoteInfo = DBCustomTabs;
+		};
 		3C59C9691DB655C4009F9072 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 070531275648442C8685B447 /* SafariViewManager.xcodeproj */;
@@ -205,9 +213,11 @@
 		9A7CA0EA5A77429BA49DC953 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		BDD859BC497A4E60A18ED9C8 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		C13962579B00451C84201BDE /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		C57FBA64164B45F1BBECCB2F /* ReactNativeCustomTabs.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeCustomTabs.xcodeproj; path = "../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs.xcodeproj"; sourceTree = "<group>"; };
 		C8AA8FD390DF47F198BA192A /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		D9113BC3A8CE4BBEBF75A1A9 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		E4011ABC84204E9BB3425F96 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		E4D3F30D323D4BF48B634AB4 /* libDBCustomTabs.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libDBCustomTabs.a; sourceTree = "<group>"; };
 		EEB798E25B554B34969FACBF /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		F54DBDEB6E7640958661128C /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,6 +251,7 @@
 				ACD33EED91814EED8E0F83F9 /* libAirMaps.a in Frameworks */,
 				3DB5E99107A345F09B47312F /* libRNVectorIcons.a in Frameworks */,
 				1BE87BD7257A492B870884A6 /* libSafariViewManager.a in Frameworks */,
+				412E3C15DDB443BDAFEC4B31 /* libDBCustomTabs.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +409,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3C4F10B31DB9007100EF0960 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C4F10C31DB9007100EF0960 /* libDBCustomTabs.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3C59C9561DB655C4009F9072 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +452,7 @@
 				9A7CA0EA5A77429BA49DC953 /* AirMaps.xcodeproj */,
 				EEB798E25B554B34969FACBF /* RNVectorIcons.xcodeproj */,
 				070531275648442C8685B447 /* SafariViewManager.xcodeproj */,
+				C57FBA64164B45F1BBECCB2F /* ReactNativeCustomTabs.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -582,6 +602,10 @@
 					ProjectRef = 4A86ECD71FFD49EE848E12B1 /* ReactNativeConfig.xcodeproj */;
 				},
 				{
+					ProductGroup = 3C4F10B31DB9007100EF0960 /* Products */;
+					ProjectRef = C57FBA64164B45F1BBECCB2F /* ReactNativeCustomTabs.xcodeproj */;
+				},
+				{
 					ProductGroup = 3C43B5151DAD859B003D65DF /* Products */;
 					ProjectRef = F54DBDEB6E7640958661128C /* RNDeviceInfo.xcodeproj */;
 				},
@@ -703,6 +727,13 @@
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 3C43B5351DAD859B003D65DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3C4F10C31DB9007100EF0960 /* libDBCustomTabs.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDBCustomTabs.a;
+			remoteRef = 3C4F10C21DB9007100EF0960 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3C59C96A1DB655C4009F9072 /* libSafariViewManager.a */ = {
@@ -832,6 +863,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitCat.app/FitCat";
@@ -848,6 +880,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -875,6 +908,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapsiosAirMaps/**",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-safari-view",
+					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",
 				);
 				INFOPLIST_FILE = FitCat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -901,6 +935,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapsiosAirMaps/**",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-safari-view",
+					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",
 				);
 				INFOPLIST_FILE = FitCat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -968,6 +1003,7 @@
 					"eact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS",
 					"$(SRCROOT)/../node_modules/react-native-safari-view",
+					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1025,6 +1061,7 @@
 					"eact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS",
 					"$(SRCROOT)/../node_modules/react-native-safari-view",
+					"$(SRCROOT)/../node_modules/react-native-custom-tabs/ios/ReactNativeCustomTabs",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
