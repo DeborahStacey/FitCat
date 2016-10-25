@@ -4,7 +4,7 @@ import { Images } from '../Themes'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
 // Styles
-import styles from './Styles/APITestingScreenStyle'
+import styles from './Styles/PresentationScreenStyle'
 
 export default class FitbitStatsScreen extends React.Component {
 
