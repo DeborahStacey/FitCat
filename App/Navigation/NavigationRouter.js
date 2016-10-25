@@ -18,6 +18,7 @@ import ThemeScreen from '../Containers/ThemeScreen'
 import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import FitbitStatsScreen from '../Containers/FitbitStatsScreen'
 import Dashboard from '../Containers/Dashboard'
+import CatDistance from '../Containers/CatDistance'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -42,6 +43,7 @@ class NavigationRouter extends Component {
             <Scene key='theme' component={ThemeScreen} title='Theme' />
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
             <Scene key='fitbitStats' component={FitbitStatsScreen} title='Activity Summary' />
+            <Scene key='catDistance' component={CatDistance} title='Cat Distance' />
           </Scene>
         </Scene>
       </Router>
