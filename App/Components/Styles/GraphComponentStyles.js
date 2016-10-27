@@ -6,10 +6,22 @@ export default StyleSheet.create({
   bar: {
     alignSelf: 'center',
     borderRadius: 5,
-    height: 8,
+    height: 15,
     marginRight: 5
   },
   distance: {
-    backgroundColor: '#F55443'
+    backgroundColor: '#FFF'
+  },
+  dateText: {
+    color: '#FFF'
+  },
+  item: {
+    flexDirection: 'column',
+    marginBottom: 5,
+    paddingHorizontal: 10
+  },
+  data: {
+    flex: 2,
+    flexDirection: 'row'
   }
 })
