@@ -1,6 +1,6 @@
 import React from 'react'
 import Moment from 'moment'
-import { AsyncStorage, Animated, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native'
+import { AsyncStorage, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native'
 import GraphComponent from '../Components/GraphComponent'
 import { Images } from '../Themes'
 import { default as StorageKeys } from '../Config/StorageKeys'
@@ -69,11 +69,9 @@ export default class CatDistance extends React.Component {
       var dateString = dateCopy.add(i, 'day').format('YYYY-MM-DD')
       weekOfData.push({'date': dateString, 'distance': this.state.yearOfData[dateString] ? this.state.yearOfData[dateString] : 0.0})
     }
-    
     this.setState({
       currentWeekData: weekOfData
     })
-
   }
 
   canMoveForward = () => {
@@ -88,7 +86,6 @@ export default class CatDistance extends React.Component {
           <Text style={styles.sectionText}>
             Cat distance!
           </Text>
-
           <Text style={styles.sectionText} onPress={this.onPressLeft}>
             &#60;
           </Text>
