@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Scene, Router } from 'react-native-router-flux'
+import I18n from 'react-native-i18n'
 import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
@@ -20,10 +21,10 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='presentationScreen' component={PresentationScreen} title='FitCat' renderLeftButton={NavItems.hamburgerButton} />
-            <Scene key='dashboard' component={Dashboard} title='Dashboard' />
-            <Scene key='fitbitStats' component={FitbitStatsScreen} title='Activity Summary' />
-            <Scene key='catDistance' component={CatDistance} title='Cat Distance' />
+            <Scene initial key='presentationScreen' component={PresentationScreen} title={I18n.t('fitcat')} renderLeftButton={NavItems.hamburgerButton} />
+            <Scene key='dashboard' component={Dashboard} title={I18n.t('dashboard')} />
+            <Scene key='fitbitStats' component={FitbitStatsScreen} title={I18n.t('activity_summary')} />
+            <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
           </Scene>
         </Scene>
       </Router>
