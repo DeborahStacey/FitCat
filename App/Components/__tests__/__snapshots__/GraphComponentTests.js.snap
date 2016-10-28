@@ -1,0 +1,54 @@
+exports[`test renders correctly 1`] = `
+<ScrollView>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "marginBottom": 5,
+        "paddingHorizontal": 10,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#FFF",
+        }
+      }>
+      2016-10-10
+    </Text>
+    <View
+      style={
+        Object {
+          "flex": 2,
+          "flexDirection": "row",
+        }
+      }>
+      <View
+        style={
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#FFF",
+            "borderRadius": 5,
+            "height": 15,
+            "marginRight": 5,
+            "width": 0,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#FFF",
+          }
+        }>
+        10.00
+      </Text>
+    </View>
+  </View>
+</ScrollView>
+`;

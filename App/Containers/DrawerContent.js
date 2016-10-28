@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, Image } from 'react-native'
 import styles from './Styles/DrawerContentStyle'
 import { Images } from '../Themes'
-// import DrawerButton from '../Components/DrawerButton'
+import DrawerButton from '../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 class DrawerContent extends Component {
@@ -36,10 +36,16 @@ class DrawerContent extends Component {
     NavigationActions.deviceInfo()
   }
 
+  handlePressCatDistance = () => {
+    this.toggleDrawer()
+    NavigationActions.catDistance()
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
         <Image source={Images.keyboardCat} style={styles.logo} />
+        <DrawerButton text='Cat Distance' onPress={this.handlePressCatDistance} />
         {/* <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
         <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
         <DrawerButton text='API Testing' onPress={this.handlePressAPI} />

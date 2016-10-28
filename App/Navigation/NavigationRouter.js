@@ -8,6 +8,7 @@ import NavItems from './NavItems'
 import PresentationScreen from '../Containers/PresentationScreen'
 import FitbitStatsScreen from '../Containers/FitbitStatsScreen'
 import Dashboard from '../Containers/Dashboard'
+import CatDistance from '../Containers/CatDistance'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -22,6 +23,7 @@ class NavigationRouter extends Component {
             <Scene initial key='presentationScreen' component={PresentationScreen} title='FitCat' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='dashboard' component={Dashboard} title='Dashboard' />
             <Scene key='fitbitStats' component={FitbitStatsScreen} title='Activity Summary' />
+            <Scene key='catDistance' component={CatDistance} title='Cat Distance' />
           </Scene>
         </Scene>
       </Router>
