@@ -12,11 +12,14 @@ export default class GraphComponent extends Component {
 
   render () {
     this.animations.length = 0
+    var oldAnimValues = this.animValues
     this.animValues = {}
+    var i = 0
     var graphs = this.props.weekData.map((item) => {
       var distance = parseFloat(item.distance).toFixed(2)
       var bigDistance = parseFloat(item.distance) * 50
-      this.animValues[item.date] = new Animated.Value(0)
+      this.animValues[item.date] = Object.values(oldAnimValues)[i] || new Animated.Value(0)
+      i = i + 1
       this.animations.push(this.createAnimation(this.animValues[item.date], bigDistance, 1000, Easing.ease, 0))
       return (
         <View key={item.date} style={styles.item}>
