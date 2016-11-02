@@ -10,7 +10,7 @@ const ApplicationStyles = {
     mainContainer: {
       flex: 1,
       marginTop: Metrics.navBarHeight,
-      backgroundColor: Colors.transparent
+      backgroundColor: Colors.background
     },
     backgroundImage: {
       position: 'absolute',
@@ -32,7 +32,7 @@ const ApplicationStyles = {
       borderBottomWidth: 1
     },
     sectionText: {
-      color: Colors.snow,
+      color: Colors.mainText,
       marginVertical: Metrics.smallMargin,
       textAlign: 'center',
       fontWeight: 'bold'

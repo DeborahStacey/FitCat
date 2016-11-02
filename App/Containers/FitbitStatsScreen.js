@@ -1,6 +1,5 @@
 import React from 'react'
-import { AsyncStorage, Alert, ScrollView, View, TextInput, Image } from 'react-native'
-import { Images } from '../Themes'
+import { AsyncStorage, Alert, ScrollView, View, TextInput } from 'react-native'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
 // Styles
@@ -35,7 +34,6 @@ export default class FitbitStatsScreen extends React.Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container} ref='container'>
 
           <View style={styles.section}>

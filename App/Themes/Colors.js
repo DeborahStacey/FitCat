@@ -1,5 +1,9 @@
 const colors = {
-  background: '#1F0808',
+  background: '#F1F5FF',
+  navigation: '#466ECC',
+  button: '#466ECC',
+  mainText: '#2C457F',
+  drawerText: '#2C457F',
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',
   transparent: 'rgba(0,0,0,0)',
