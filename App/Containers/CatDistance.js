@@ -1,8 +1,7 @@
 import React from 'react'
 import Moment from 'moment'
-import { AsyncStorage, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native'
+import { AsyncStorage, Text, TouchableOpacity, View, ScrollView } from 'react-native'
 import GraphComponent from '../Components/GraphComponent'
-import { Images } from '../Themes'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
 import styles from './Styles/CatDistanceStyle'
@@ -81,7 +80,6 @@ export default class CatDistance extends React.Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <Text style={styles.sectionText}>
             Cat distance!
