@@ -7,7 +7,7 @@ import { default as StorageKeys } from '../Config/StorageKeys'
 
 import { parse as qsparse } from 'querystringify'
 
-export default {
+module.exports = {
 
   /**
    * Launches a browser to authenticate with FitBit. After authorization, the app will
@@ -22,20 +22,12 @@ export default {
       `&expires_in=${AppConfig.FITBIT_EXPIRATION}` +
       `&state=${AppConfig.FITBIT_STATE}`
 
-    if (Platform.OS === 'ios' && SafariView.isAvailable()) {
-      SafariView.show({
-        url: fitbitAuthUrl
-      }).catch(error => {
-        console.error(error)
-      })
+    if (Platform.OS === 'ios') {
+      module.exports.openLinkSafariView(fitbitAuthUrl)
     } else if (Platform.OS === 'android') {
-      CustomTabs.openURL(fitbitAuthUrl).then((launched: boolean) => {
-        console.log(`Launched custom tab: ${launched}`)
-      }).catch(error => {
-        console.error(error)
-      })
+      module.exports.openLinkChromeTabs(fitbitAuthUrl)
     } else {
-      Linking.openURL(fitbitAuthUrl).catch(err => console.err('An error occurred', err))
+      module.exports.openLinkExternally(fitbitAuthUrl)
     }
   },
 
@@ -59,6 +51,39 @@ export default {
     } catch (error) {
       console.error('Error saving to AsyncStorage', error)
     }
+  },
+
+  // TODO: Move these functions elsewhere to be more reusable.
+
+  /**
+   * Open a link using Chrome Custom Tabs.
+   */
+  openLinkChromeTabs: (url) => {
+    CustomTabs.openURL(
+      url
+    ).catch(error => {
+      console.error(error)
+      module.exports.openLinkExternally(url)
+    })
+  },
+
+  /**
+   * Open a link using SFSafariViewController.
+   */
+  openLinkSafariView: (url) => {
+    SafariView.show({
+      url: url
+    }).catch(error => {
+      console.error(error)
+      module.exports.openLinkExternally(url)
+    })
+  },
+
+  /**
+   * Open a link in an external browser.
+   */
+  openLinkExternally: (url) => {
+    Linking.openURL(url).catch(err => console.err('An error occurred', err))
   }
 
 }
