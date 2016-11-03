@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, Image } from 'react-native'
+import I18n from 'react-native-i18n'
 import styles from './Styles/DrawerContentStyle'
 import { Images } from '../Themes'
 import DrawerButton from '../Components/DrawerButton'
@@ -45,7 +46,7 @@ class DrawerContent extends Component {
     return (
       <ScrollView style={styles.container}>
         <Image source={Images.keyboardCat} style={styles.logo} />
-        <DrawerButton text='Cat Distance' onPress={this.handlePressCatDistance} />
+        <DrawerButton text={I18n.t('cat_distance')} onPress={this.handlePressCatDistance} />
         {/* <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
         <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
         <DrawerButton text='API Testing' onPress={this.handlePressAPI} />

@@ -6,10 +6,10 @@ import renderer from 'react-test-renderer'
 
 it('renders correctly', () => {
   var testData = [
-      {'date': '2016-10-10', 'distance': 10.0}
+      {'label': '2016-10-10', 'value': 10.0}
   ]
   const tree = renderer.create(
-    <GraphComponent weekData={testData} />
+    <GraphComponent data={testData} barMultiplier={10} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

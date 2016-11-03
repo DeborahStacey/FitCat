@@ -6,6 +6,7 @@ import createStore from '../Redux'
 import DebugSettings from '../Config/DebugSettings'
 import SafariView from 'react-native-safari-view'
 import { default as OAuthManager } from '../Services/OAuthManager'
+import '../I18n/I18n'
 
 if (__DEV__) {
   // If ReactNative's yellow box warnings are too much, it is possible to turn
