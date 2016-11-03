@@ -78,6 +78,14 @@ export default class CatDistance extends React.Component {
     return Moment(this.state.selectedDate).add(7, 'day').isSame(Moment(), 'day')
   }
 
+  disabledStyle = () => {
+    if(this.canMoveForward())
+    {
+      return 0.5
+    } 
+    return 1
+  }
+
   render () {
     return (
       <View style={styles.mainContainer}>
@@ -91,7 +99,7 @@ export default class CatDistance extends React.Component {
           <Text style={styles.sectionText}>
             {this.state.selectedDate.format('dddd DD, MMMM YYYY') + ' - ' + Moment(this.state.selectedDate).add(7, 'day').format('dddd DD, MMMM YYYY')}
           </Text>
-          <TouchableHighlight style={[styles.buttonTouchable, styles.blockStyle]} onPress={this.onPressRight}>
+          <TouchableHighlight style={[styles.buttonTouchable, styles.blockStyle, {opacity: this.disabledStyle()}]} disabled={this.canMoveForward()} onPress={this.onPressRight}>
             <View style={[styles.buttonContainer, styles.blockStyle]}>
               <Text style={styles.buttonText}>Next Week</Text>
               <Icon name='chevron-right' style={styles.iconRight} />
