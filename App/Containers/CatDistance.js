@@ -67,7 +67,7 @@ export default class CatDistance extends React.Component {
     for (var i = 0; i <= 7; i++) {
       var dateCopy = Moment(selectedDate)
       var dateString = dateCopy.add(i, 'day').format('YYYY-MM-DD')
-      weekOfData.push({'date': dateString, 'distance': this.state.yearOfData[dateString] ? this.state.yearOfData[dateString] : 0.0})
+      weekOfData.push({'label': dateString, 'value': this.state.yearOfData[dateString] ? this.state.yearOfData[dateString] : 0.0})
     }
     this.setState({
       currentWeekData: weekOfData
@@ -97,7 +97,7 @@ export default class CatDistance extends React.Component {
               <Icon name='chevron-right' style={styles.iconRight} />
             </View>
           </TouchableHighlight>
-          <GraphComponent weekData={this.state.currentWeekData} />
+          <GraphComponent data={this.state.currentWeekData} barMultiplier={50} />
         </ScrollView>
       </View>
       )

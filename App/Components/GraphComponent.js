@@ -3,6 +3,18 @@ import { Animated, Easing, Text, View, ScrollView } from 'react-native'
 
 import styles from './Styles/GraphComponentStyles'
 
+/* IMPORTANT USAGE NOTES:
+data must be an object of label: something, value: something
+For example:
+{
+  {label: 'I am a label', value: 1.234},
+  {label: 'I am also a thing', value: 1.34},
+}
+Values have to be numeric because it's a graph.
+
+Multiplier is to make the animation of the bars more noticeable.
+*/
+
 export default class GraphComponent extends Component {
   constructor (props) {
     super(props)
@@ -15,22 +27,22 @@ export default class GraphComponent extends Component {
     var oldAnimValues = this.animValues
     this.animValues = {}
     var i = 0
-    var graphs = this.props.weekData.map((item) => {
-      var distance = parseFloat(item.distance).toFixed(2)
-      var bigDistance = parseFloat(item.distance) * 50
-      this.animValues[item.date] = Object.values(oldAnimValues)[i] || new Animated.Value(0)
+    var graphs = this.props.data.map((item) => {
+      var value = parseFloat(item.value).toFixed(2)
+      var bigValue = parseFloat(item.value) * this.props.barMultiplier
+      this.animValues[item.label] = Object.values(oldAnimValues)[i] || new Animated.Value(0)
       i = i + 1
-      this.animations.push(this.createAnimation(this.animValues[item.date], bigDistance, 1000, Easing.ease, 0))
+      this.animations.push(this.createAnimation(this.animValues[item.label], bigValue, 1000, Easing.ease, 0))
       return (
-        <View key={item.date} style={styles.item}>
-          <Text style={styles.dateText}>
-            {item.date}
+        <View key={item.label} style={styles.item}>
+          <Text style={styles.labelText}>
+            {item.label}
           </Text>
           <View style={styles.data}>{
-            <Animated.View style={[styles.bar, styles.distance, {width: this.animValues[item.date]}]} />
+            <Animated.View style={[styles.bar, styles.value, {width: this.animValues[item.label]}]} />
           }
-            <Text style={styles.dateText}>
-              {distance}
+            <Text style={styles.labelText}>
+              {value}
             </Text>
           </View>
         </View>
@@ -65,5 +77,6 @@ export default class GraphComponent extends Component {
 }
 
 GraphComponent.propTypes = {
-  weekData: PropTypes.any.isRequired
+  data: PropTypes.any.isRequired,
+  barMultiplier: PropTypes.number.isRequired
 }

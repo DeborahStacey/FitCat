@@ -9,10 +9,10 @@ export default StyleSheet.create({
     height: 15,
     marginRight: 5
   },
-  distance: {
+  value: {
     backgroundColor: Colors.button
   },
-  dateText: {
+  labelText: {
     color: Colors.mainText,
     fontWeight: '700'
   },
