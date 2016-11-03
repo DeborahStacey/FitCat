@@ -4,6 +4,7 @@ import NavigationRouter from '../Navigation/NavigationRouter'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
 import ReduxPersist from '../Config/ReduxPersist'
+import { Colors } from '../Themes/'
 // import './Config/PushConfig'
 
 // Styles
@@ -20,7 +21,7 @@ class RootContainer extends Component {
   render () {
     return (
       <View style={styles.applicationView}>
-        <StatusBar barStyle='light-content' />
+        <StatusBar barStyle='light-content' backgroundColor={Colors.mainText} />
         <NavigationRouter />
       </View>
     )
