@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { ApplicationStyles } from '../../Themes/'
+import { ApplicationStyles, Colors } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -10,10 +10,11 @@ export default StyleSheet.create({
     marginRight: 5
   },
   distance: {
-    backgroundColor: '#FFF'
+    backgroundColor: Colors.button
   },
   dateText: {
-    color: '#FFF'
+    color: Colors.mainText,
+    fontWeight: '700'
   },
   item: {
     flexDirection: 'column',
