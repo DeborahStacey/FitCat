@@ -1,4 +1,9 @@
 {
+  "fitcat": "FitCat",
+  "cat_distance": "Cat Distance",
+  "dashboard": "Dashboard",
+  "activity_summary": "Activity Summary",
+
    "signIn": "Sign In",
    "logOut": "Log Out",
    "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
