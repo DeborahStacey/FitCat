@@ -1,7 +1,8 @@
 import React from 'react'
 import Moment from 'moment'
-import { AsyncStorage, Text, TouchableOpacity, View, ScrollView } from 'react-native'
+import { AsyncStorage, Text, TouchableHighlight, View, ScrollView } from 'react-native'
 import GraphComponent from '../Components/GraphComponent'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
 import styles from './Styles/CatDistanceStyle'
@@ -66,7 +67,7 @@ export default class CatDistance extends React.Component {
     for (var i = 0; i <= 7; i++) {
       var dateCopy = Moment(selectedDate)
       var dateString = dateCopy.add(i, 'day').format('YYYY-MM-DD')
-      weekOfData.push({'date': dateString, 'distance': this.state.yearOfData[dateString] ? this.state.yearOfData[dateString] : 0.0})
+      weekOfData.push({'label': dateString, 'value': this.state.yearOfData[dateString] ? this.state.yearOfData[dateString] : 0.0})
     }
     this.setState({
       currentWeekData: weekOfData
@@ -77,25 +78,33 @@ export default class CatDistance extends React.Component {
     return Moment(this.state.selectedDate).add(7, 'day').isSame(Moment(), 'day')
   }
 
+  disabledStyle = () => {
+    if (this.canMoveForward()) {
+      return 0.5
+    }
+    return 1
+  }
+
   render () {
     return (
       <View style={styles.mainContainer}>
         <ScrollView style={styles.container}>
-          <Text style={styles.sectionText}>
-            Cat distance!
-          </Text>
-          <Text style={styles.sectionText} onPress={this.onPressLeft}>
-            &#60;
-          </Text>
+          <TouchableHighlight style={[styles.buttonTouchable, styles.blockStyle]} onPress={this.onPressLeft}>
+            <View style={[styles.buttonContainer, styles.blockStyle]}>
+              <Icon name='chevron-left' style={styles.iconLeft} />
+              <Text style={styles.buttonText}>Previous Week</Text>
+            </View>
+          </TouchableHighlight>
           <Text style={styles.sectionText}>
             {this.state.selectedDate.format('dddd DD, MMMM YYYY') + ' - ' + Moment(this.state.selectedDate).add(7, 'day').format('dddd DD, MMMM YYYY')}
           </Text>
-          <TouchableOpacity disabled={this.canMoveForward()} onPress={this.onPressRight}>
-            <Text style={styles.sectionText}>
-                &#62;
-            </Text>
-          </TouchableOpacity>
-          <GraphComponent weekData={this.state.currentWeekData} />
+          <TouchableHighlight style={[styles.buttonTouchable, styles.blockStyle, {opacity: this.disabledStyle()}]} disabled={this.canMoveForward()} onPress={this.onPressRight}>
+            <View style={[styles.buttonContainer, styles.blockStyle]}>
+              <Text style={styles.buttonText}>Next Week</Text>
+              <Icon name='chevron-right' style={styles.iconRight} />
+            </View>
+          </TouchableHighlight>
+          <GraphComponent data={this.state.currentWeekData} barMultiplier={50} />
         </ScrollView>
       </View>
       )
