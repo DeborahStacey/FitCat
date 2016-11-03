@@ -79,10 +79,9 @@ export default class CatDistance extends React.Component {
   }
 
   disabledStyle = () => {
-    if(this.canMoveForward())
-    {
+    if (this.canMoveForward()) {
       return 0.5
-    } 
+    }
     return 1
   }
 
