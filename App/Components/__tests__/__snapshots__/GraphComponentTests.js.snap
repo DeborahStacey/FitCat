@@ -14,7 +14,8 @@ exports[`test renders correctly 1`] = `
       ellipsizeMode="tail"
       style={
         Object {
-          "color": "#FFF",
+          "color": "#2C457F",
+          "fontWeight": "700",
         }
       }>
       2016-10-10
@@ -30,7 +31,7 @@ exports[`test renders correctly 1`] = `
         style={
           Object {
             "alignSelf": "center",
-            "backgroundColor": "#FFF",
+            "backgroundColor": "#466ECC",
             "borderRadius": 5,
             "height": 15,
             "marginRight": 5,
@@ -43,7 +44,8 @@ exports[`test renders correctly 1`] = `
         ellipsizeMode="tail"
         style={
           Object {
-            "color": "#FFF",
+            "color": "#2C457F",
+            "fontWeight": "700",
           }
         }>
         10.00
