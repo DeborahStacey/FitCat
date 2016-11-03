@@ -7,6 +7,6 @@ export default class CatSteps extends WeeklyActivityBase {
   }
 
   render () {
-    return super.render(0.1)
+    return super.render(0.06)
   }
 }
