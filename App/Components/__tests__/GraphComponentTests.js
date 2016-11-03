@@ -9,7 +9,7 @@ it('renders correctly', () => {
       {'label': '2016-10-10', 'value': 10.0}
   ]
   const tree = renderer.create(
-    <GraphComponent data={testData} multiplier={10} />
+    <GraphComponent data={testData} barMultiplier={10} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
