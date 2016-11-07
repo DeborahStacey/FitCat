@@ -34,9 +34,11 @@ export default class WeeklyActivityBase extends React.Component {
   }
 
   async fetchYearOfData (activityType) {
-    let userId = await AsyncStorage.getItem(StorageKeys.FITBIT_USER_ID)
+    // selectedDate is the first date in the selected week, but we want data starting at the end
+    let endDate = Moment(this.state.selectedDate).add(7, 'day').format('YYYY-MM-DD')
     let accessToken = await AsyncStorage.getItem(StorageKeys.FITBIT_ACCESS_TOKEN)
-    fetch(`https://api.fitbit.com/1/user/${userId}/activities/${activityType}/date/${Moment(this.state.selectedDate).format('YYYY-MM-DD')}/1y.json`, {
+
+    fetch(`https://api.fitbit.com/1/user/-/activities/${activityType}/date/${endDate}/1y.json`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
