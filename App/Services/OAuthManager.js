@@ -1,7 +1,8 @@
-import { AsyncStorage, Platform, Linking } from 'react-native'
+import { AsyncStorage, Platform, Linking, StatusBar } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import SafariView from 'react-native-safari-view'
-import { CustomTabs } from 'react-native-custom-tabs'
+import { CustomTabs, ANIMATIONS_SLIDE } from 'react-native-custom-tabs'
+import { Colors } from '../Themes/'
 import { default as AppConfig } from '../Config/AppConfig'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
@@ -60,7 +61,12 @@ module.exports = {
    */
   openLinkChromeTabs: (url) => {
     CustomTabs.openURL(
-      url
+      url,
+      {
+        toolbarColor: Colors.navigation,
+        showPageTitle: true,
+        animations: ANIMATIONS_SLIDE
+      }
     ).catch(error => {
       console.error(error)
       module.exports.openLinkExternally(url)
