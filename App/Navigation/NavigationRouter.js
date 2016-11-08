@@ -11,6 +11,7 @@ import FitbitStatsScreen from '../Containers/FitbitStatsScreen'
 import Dashboard from '../Containers/Dashboard'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
+import Device from '../Containers/Device'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -27,6 +28,7 @@ class NavigationRouter extends Component {
             <Scene key='fitbitStats' component={FitbitStatsScreen} title={I18n.t('activity_summary')} />
             <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
+            <Scene key='device' component={Device} title={I18n.t('device')} />
           </Scene>
         </Scene>
       </Router>

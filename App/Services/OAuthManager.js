@@ -1,4 +1,4 @@
-import { AsyncStorage, Platform, Linking, StatusBar } from 'react-native'
+import { AsyncStorage, Platform, Linking } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import SafariView from 'react-native-safari-view'
 import { CustomTabs, ANIMATIONS_SLIDE } from 'react-native-custom-tabs'
