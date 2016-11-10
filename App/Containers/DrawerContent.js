@@ -47,12 +47,17 @@ class DrawerContent extends Component {
     NavigationActions.catSteps()
   }
 
+  handlePressDevice = () => {
+    this.toggleDrawer()
+    NavigationActions.device()
+  }
   render () {
     return (
       <ScrollView style={styles.container}>
         <Image source={Images.keyboardCat} style={styles.logo} />
         <DrawerButton text={I18n.t('cat_distance')} onPress={this.handlePressCatDistance} />
         <DrawerButton text={I18n.t('cat_steps')} onPress={this.handlePressCatSteps} />
+        <DrawerButton text={I18n.t('device')} onPress={this.handlePressDevice} />
         {/* <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
         <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
         <DrawerButton text='API Testing' onPress={this.handlePressAPI} />
