@@ -4,5 +4,7 @@ module.exports = {
   FITBIT_USER_ID: 'fitbit_user_id',
 
   CAT_ID: 'cat_id',
-  CAT_NAME: 'cat_name'
+  CAT_NAME: 'cat_name',
+  
+  SAVED_FOOD_TYPES: 'saved_food_types'
 }

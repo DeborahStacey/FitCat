@@ -11,6 +11,7 @@ import AddCat from '../Containers/AddCat'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
 import Device from '../Containers/Device'
+import FoodConsumption from '../Containers/FoodConsumption'
 import NavItems from './NavItems'
 import CatWeight from '../Containers/CatWeight'
 
@@ -35,6 +36,7 @@ class NavigationRouter extends Component {
             <Scene key='device' component={Device} title={I18n.t('device')} />
             <Scene key='catWeight' component={CatWeight} title={I18n.t('cat_weight')} />
             <Scene key='addCat' component={AddCat} title={I18n.t('register_your_cat')} />
+            <Scene key='foodConsumption' component={FoodConsumption} title={I18n.t('food_consumption')} />
           </Scene>
         </Scene>
       </Router>

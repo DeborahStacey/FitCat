@@ -43,11 +43,22 @@ class DrawerContent extends Component {
     NavigationActions.notLoggedInDash()
   }
 
+  handlePressFoodConsumption = () => {
+    this.toggleDrawer()
+    NavigationActions.foodConsumption()
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
         <DrawerButton text={I18n.t('change_cat')} onPress={this.handlePressChangeCat} />
         <DrawerButton text={I18n.t('logOut')} onPress={this.handlePressLogOut} />
+        <DrawerButton text={I18n.t('food_consumption')} onPress={this.handlePressFoodConsumption} />
+        {/* <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
+        <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
+        <DrawerButton text='API Testing' onPress={this.handlePressAPI} />
+        <DrawerButton text='Themes' onPress={this.handlePressTheme} />
+        <DrawerButton text='Device Info' onPress={this.handlePressDevice} /> */}
       </ScrollView>
     )
   }
