@@ -63,7 +63,7 @@ export default class Dashboard extends React.Component {
   }
 
   render () {
-    var batteryIco n= this.getBatteryIcon()
+    var batteryIcon = this.getBatteryIcon()
     return (
       <View style={styles.mainContainer}>
         <ScrollView style={styles.container}>
