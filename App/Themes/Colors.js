@@ -4,6 +4,7 @@ const colors = {
   button: '#466ECC',
   mainText: '#2C457F',
   drawerText: '#2C457F',
+  placeholderText: '#787A7F',
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',
   transparent: 'rgba(0,0,0,0)',
