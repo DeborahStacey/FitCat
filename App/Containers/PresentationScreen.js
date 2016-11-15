@@ -23,7 +23,7 @@ export default class PresentationScreen extends React.Component {
               Ignite provided the basis of what is here!
             </Text>
             <RoundedButton onPress={NavigationActions.dashboard}>
-            Click me
+            Dashboard
             </RoundedButton>
           </View>
 

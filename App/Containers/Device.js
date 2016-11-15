@@ -1,8 +1,8 @@
 import React from 'react'
-import { AsyncStorage, Text, View, ScrollView } from 'react-native'
-import { default as StorageKeys } from '../Config/StorageKeys'
+import { Text, View, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Moment from 'moment'
+import { default as DeviceInfo } from '../Services/DeviceInfo'
 
 import styles from './Styles/DeviceStyle'
 
@@ -10,29 +10,25 @@ export default class Device extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      device: [],
+      device: {},
       devicePresent: false
     }
     this.fetchDeviceData()
   }
 
   async fetchDeviceData () {
-    let accessToken = await AsyncStorage.getItem(StorageKeys.FITBIT_ACCESS_TOKEN)
-
-    fetch(`https://api.fitbit.com/1/user/-/devices.json`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + accessToken
-      }
-    }).then((response) => response.json()).then((responseJson) => {
-      if (responseJson.length !== 0) {
-        this.setState({
-          device: responseJson[0], // If we have more than one fitbit this will need to change..
-          devicePresent: true
-        })
-      }
-    })
+    let deviceInfo = await DeviceInfo.fetchDeviceData()
+    if (deviceInfo !== {}) {
+      this.setState({
+        device: deviceInfo[0],
+        devicePresent: true
+      })
+    } else {
+      this.setState({
+        device: {},
+        devicePresent: false
+      })
+    }
   }
 
   matchesBatteryLevel = (toMatch) => {
