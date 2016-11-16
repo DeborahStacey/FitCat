@@ -27,6 +27,7 @@ class NavigationRouter extends Component {
               <Scene key='loggedInDash' />
               <Scene key='notLoggedInDash' mustLogin onLeft={() => { return }} renderLeftButton={() => { return }} />
             </Scene>
+            <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
             <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
             <Scene key='device' component={Device} title={I18n.t('device')} />
