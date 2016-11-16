@@ -35,10 +35,6 @@ export default class PresentationScreen extends React.Component {
       })
   }
 
-  signUp () {
-    Alert.alert('Please visit the WellCat website to sign up.')
-  }
-
   render () {
     return (
       <View style={styles.mainContainer}>
@@ -73,7 +69,7 @@ export default class PresentationScreen extends React.Component {
             </RoundedButton>
           </View>
 
-          <RoundedButton onPress={this.signUp}>
+          <RoundedButton onPress={NavigationActions.signUp}>
             {I18n.t('signUp')}
           </RoundedButton>
         </ScrollView>
