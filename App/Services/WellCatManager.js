@@ -26,6 +26,41 @@ module.exports = {
     }).catch((error) => {
       return { code: -1, content: error }
     })
+  },
+
+  signUp: (fName, lName, email, password, street, unit, city, pCode, locationId) => {
+    let wellcatSignupUrl = `${AppConfig.WELLCAT_BASE}/user/register`
+
+    return fetch(wellcatSignupUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: `${email}`,
+        password: `${password}`,
+        firstName: `${fName}`,
+        lastName: `${lName}`,
+        address: {
+          street: `${street}`,
+          unit: `${unit}`,
+          city: `${city}`,
+          postalCode: `${pCode}`,
+          locationID: `${locationId}`
+        }
+      })
+    }).then((response) => {
+      if (response.ok) {
+        return { code: 1, content: '' }
+      }
+      var body = response._bodyText
+      var bodyObj = JSON.parse(body)
+      var message = bodyObj.error
+      return { code: 0, content: message }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
   }
 
 }
