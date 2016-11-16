@@ -3,9 +3,8 @@ import configureStore from './CreateStore'
 import rootSaga from '../Sagas/'
 
 export default () => {
-  /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
-    login: require('./LoginRedux').reducer
+    blank: function (state, action) { if (state == null) state = []; return state }
   })
 
   return configureStore(rootReducer, rootSaga)
