@@ -48,7 +48,7 @@ module.exports = {
       await AsyncStorage.setItem(StorageKeys.FITBIT_ACCESS_TOKEN, qsParts.access_token)
       await AsyncStorage.setItem(StorageKeys.FITBIT_USER_ID, qsParts.user_id)
 
-      NavigationActions.fitbitStats()
+      NavigationActions.dashboard()
     } catch (error) {
       console.error('Error saving to AsyncStorage', error)
     }
