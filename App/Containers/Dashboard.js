@@ -5,6 +5,8 @@ import DashboardStat from '../Components/DashboardStat'
 import { default as StorageKeys } from '../Config/StorageKeys'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { default as DeviceInfo } from '../Services/DeviceInfo'
+import { default as OAuthManager } from '../Services/OAuthManager'
+import RoundedButton from '../Components/RoundedButton'
 
 import styles from './Styles/DashboardStyle'
 
@@ -73,6 +75,9 @@ export default class Dashboard extends React.Component {
             <DashboardStat icon='map-marker' stat={this.state.distance.toString()} unit='km' onPress={NavigationActions.catDistance} />
             <View style={styles.dashboardStatDivider} />
             <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
+            <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
+              Connect FitBit Account
+            </RoundedButton>
           </View>
         </ScrollView>
       </View>

@@ -17,22 +17,6 @@ exports[`test renders correctly 1`] = `
     <View
       style={
         Object {
-          "alignItems": "center",
-        }
-      }>
-      <Image
-        source={1}
-        style={
-          Object {
-            "height": 300,
-            "resizeMode": "contain",
-            "width": 300,
-          }
-        } />
-    </View>
-    <View
-      style={
-        Object {
           "borderBottomColor": "#D8D8D8",
           "borderBottomWidth": 1,
           "borderTopColor": "#D8D8D8",
@@ -53,8 +37,61 @@ exports[`test renders correctly 1`] = `
             "textAlign": "center",
           }
         }>
-        Welcome to FitCat Hello World! Ignite provided the basis of what is here!
+        [missing \"en.welcomeLogIn\" translation]
       </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.email\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.email\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.password\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.password\" translation]"
+        placeholderTextColor="#787A7F"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+          }
+        } />
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
@@ -93,7 +130,7 @@ exports[`test renders correctly 1`] = `
               "textAlign": "center",
             }
           }>
-          CLICK ME
+          [MISSING \"EN.LOGIN\" TRANSLATION]
         </Text>
       </View>
     </View>
@@ -135,7 +172,7 @@ exports[`test renders correctly 1`] = `
             "textAlign": "center",
           }
         }>
-        CONNECT FITBIT ACCOUNT
+        [MISSING \"EN.SIGNUP\" TRANSLATION]
       </Text>
     </View>
   </ScrollView>
