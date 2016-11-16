@@ -7,7 +7,6 @@ import NavigationDrawer from './NavigationDrawer'
 // screens identified by the router
 import EntryScreen from '../Containers/EntryScreen'
 import PresentationScreen from '../Containers/PresentationScreen'
-import FitbitStatsScreen from '../Containers/FitbitStatsScreen'
 import Dashboard from '../Containers/Dashboard'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
@@ -26,7 +25,6 @@ class NavigationRouter extends Component {
             <Scene initial key='entry' component={EntryScreen} title={I18n.t('fitcat')} type={ActionConst.RESET} />
             <Scene key='presentationScreen' component={PresentationScreen} title={I18n.t('fitcat')} />
             <Scene key='dashboard' component={Dashboard} title={I18n.t('dashboard')} type={ActionConst.RESET} />
-            <Scene key='fitbitStats' component={FitbitStatsScreen} title={I18n.t('activity_summary')} />
             <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
             <Scene key='device' component={Device} title={I18n.t('device')} />
