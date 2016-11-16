@@ -8,7 +8,6 @@ import NavigationDrawer from './NavigationDrawer'
 import EntryScreen from '../Containers/EntryScreen'
 import PresentationScreen from '../Containers/PresentationScreen'
 import FitbitStatsScreen from '../Containers/FitbitStatsScreen'
-import WelcomeScreen from '../Containers/WelcomeScreen'
 import SignUpScreen from '../Containers/SignUpScreen'
 import Dashboard from '../Containers/Dashboard'
 import CatDistance from '../Containers/CatDistance'
@@ -27,7 +26,6 @@ class NavigationRouter extends Component {
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene initial key='entry' component={EntryScreen} title={I18n.t('fitcat')} type={ActionConst.RESET} />
             <Scene key='presentationScreen' component={PresentationScreen} title={I18n.t('fitcat')} />
-            <Scene key='welcome' component={WelcomeScreen} title={I18n.t('fitcat')} type={ActionConst.RESET} />
             <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
             <Scene key='dashboard' component={Dashboard} title={I18n.t('dashboard')} type={ActionConst.RESET} />
             <Scene key='fitbitStats' component={FitbitStatsScreen} title={I18n.t('activity_summary')} />

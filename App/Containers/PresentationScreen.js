@@ -24,7 +24,7 @@ export default class PresentationScreen extends React.Component {
       .then((result) => {
         if (result.code === 1) {
           AsyncStorage.setItem(StorageKeys.WELLCAT_EMAIL, email)
-          NavigationActions.welcome()
+          NavigationActions.dashboard()
         } else if (result.code === 0) {
           Alert.alert(`${I18n.t('unable')} ${result.content}.`)
         } else if (result.code === -1) {

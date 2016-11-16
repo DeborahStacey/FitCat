@@ -12,7 +12,7 @@ export default class EntryScreen extends React.Component {
     AsyncStorage.getItem(StorageKeys.WELLCAT_EMAIL)
       .then((wellcatEmail) => {
         if (wellcatEmail) {
-          NavigationActions.welcome()
+          NavigationActions.dashboard()
         } else {
           NavigationActions.presentationScreen()
         }
