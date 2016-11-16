@@ -4,7 +4,6 @@ import createLogger from 'redux-logger'
 import Config from '../Config/DebugSettings'
 import createSagaMiddleware from 'redux-saga'
 import R from 'ramda'
-import RehydrationServices from '../Services/RehydrationServices'
 import ReduxPersist from '../Config/ReduxPersist'
 import { StartupTypes } from './StartupRedux'
 
@@ -65,11 +64,6 @@ export default (rootReducer, rootSaga) => {
   }
 
   const store = createStore(rootReducer, compose(...enhancers))
-
-  // configure persistStore and check reducer version number
-  if (ReduxPersist.active) {
-    RehydrationServices.updateReducers(store)
-  }
 
   // kick off root saga
   sagaMiddleware.run(rootSaga)
