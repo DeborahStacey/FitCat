@@ -9,7 +9,7 @@ class Loading extends Component {
     return (
       <View>
         <Text style={styles.sectionText}>
-            {I18n.t('loading')}
+          {I18n.t('loading')}
         </Text>
       </View>
     )
