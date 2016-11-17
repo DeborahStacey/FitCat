@@ -5,13 +5,12 @@ import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 
 // screens identified by the router
-import EntryScreen from '../Containers/EntryScreen'
-import PresentationScreen from '../Containers/PresentationScreen'
 import SignUpScreen from '../Containers/SignUpScreen'
 import Dashboard from '../Containers/Dashboard'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
 import Device from '../Containers/Device'
+import NavItems from './NavItems'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -23,10 +22,11 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='entry' component={EntryScreen} title={I18n.t('fitcat')} type={ActionConst.RESET} />
-            <Scene key='presentationScreen' component={PresentationScreen} title={I18n.t('fitcat')} />
-            <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
-            <Scene key='dashboard' component={Dashboard} title={I18n.t('dashboard')} type={ActionConst.RESET} />
+          <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
+            <Scene initial key='dashboard' component={Dashboard} title={I18n.t('dashboard')} type={ActionConst.RESET} renderLeftButton={NavItems.hamburgerButton} >
+              <Scene key='loggedInDash' />
+              <Scene key='notLoggedInDash' mustLogin onLeft={() => { return }} renderLeftButton={() => { return }} />
+            </Scene>
             <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
             <Scene key='device' component={Device} title={I18n.t('device')} />

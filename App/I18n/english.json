@@ -4,6 +4,8 @@
   "cat_steps": "Cat Steps",
   "dashboard": "Dashboard",
   "device": "Device",
+  "connectFitbitAccount": "Connect FitBit Account",
+  "loading": "Loading...",
 
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",
   "welcomeSignUp": "Sign up for WellCat by providing the following information.",
