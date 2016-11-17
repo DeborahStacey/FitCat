@@ -3,7 +3,7 @@ import { AsyncStorage, Alert, ScrollView, View, TextInput } from 'react-native'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
 // Styles
-import styles from './Styles/PresentationScreenStyle'
+import styles from './Styles/FitbitStatsScreenStyle'
 
 export default class FitbitStatsScreen extends React.Component {
 

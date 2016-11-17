@@ -5,6 +5,7 @@
   "dashboard": "Dashboard",
   "activity_summary": "Activity Summary",
   "device": "Device",
+  "connectFitbitAccount": "Connect FitBit Account",
 
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",
   "tryLater": "Oops! Something went wrong. Please try again later.",

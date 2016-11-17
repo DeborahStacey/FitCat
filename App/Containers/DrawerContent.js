@@ -56,7 +56,7 @@ class DrawerContent extends Component {
   handlePressLogOut = () => {
     this.toggleDrawer()
     AsyncStorage.setItem(StorageKeys.WELLCAT_EMAIL, '')
-    NavigationActions.entry()
+    NavigationActions.notLoggedInDash()
   }
 
   render () {

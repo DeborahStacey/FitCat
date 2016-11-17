@@ -1,0 +1,35 @@
+exports[`test renders an empty page initially 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F5FF",
+      "flex": 1,
+      "marginTop": 64,
+    }
+  }>
+  <ScrollView
+    style={
+      Object {
+        "flex": 1,
+        "paddingTop": 10,
+      }
+    }>
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        Loading...
+      </Text>
+    </View>
+  </ScrollView>
+</View>
+`;
