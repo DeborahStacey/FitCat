@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Platform, Linking } from 'react-native'
-import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
-import createStore from '../Redux'
 import DebugSettings from '../Config/DebugSettings'
 import SafariView from 'react-native-safari-view'
 import { default as OAuthManager } from '../Services/OAuthManager'
@@ -14,16 +12,9 @@ if (__DEV__) {
   console.disableYellowBox = !DebugSettings.yellowBox
 }
 
-// create our store
-const store = createStore()
-
 /**
  * Provides an entry point into our application.  Both index.ios.js and index.android.js
  * call this component first.
- *
- * We create our Redux store here, put it into a provider and then bring in our
- * RootContainer.
- *
  * We separate like this to play nice with React Native's hot reloading.
  */
 class App extends Component {
@@ -68,9 +59,7 @@ class App extends Component {
 
   render () {
     return (
-      <Provider store={store}>
-        <RootContainer />
-      </Provider>
+      <RootContainer />
     )
   }
 }

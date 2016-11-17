@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react'
 import Drawer from 'react-native-drawer'
 import { DefaultRenderer, Actions as NavigationActions } from 'react-native-router-flux'
 import DrawerContent from '../Containers/DrawerContent'
-import { connect } from 'react-redux'
 import Styles from './Styles/NavigationDrawerStyle'
 
 /* *******************
@@ -40,14 +39,4 @@ NavigationDrawer.propTypes = {
   navigationState: PropTypes.object
 }
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationDrawer)
+export default NavigationDrawer
