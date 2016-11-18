@@ -1,4 +1,6 @@
+import { AsyncStorage } from 'react-native'
 import { default as AppConfig } from '../Config/AppConfig'
+import { default as StorageKeys } from '../Config/StorageKeys'
 
 module.exports = {
 
@@ -26,6 +28,14 @@ module.exports = {
     }).catch((error) => {
       return { code: -1, content: error }
     })
-  }
+  },
 
+  // TODO
+  addCat: async (catId) => {
+    try {
+      await AsyncStorage.setItem(StorageKeys.CAT_ID, catId.toString())
+    } catch (error) {
+      console.error('Error saving to AsyncStorage', error)
+    }
+  }
 }
