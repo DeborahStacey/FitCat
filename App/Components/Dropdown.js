@@ -1,5 +1,6 @@
 import React from 'react'
 import { Platform, Picker, View, Text } from 'react-native'
+import I18n from 'react-native-i18n'
 import styles from './Styles/DropdownStyle'
 
 export default class Dropdown extends React.Component {
@@ -16,7 +17,7 @@ export default class Dropdown extends React.Component {
     if (options != null) {
       var items = []
 
-      items.push(<Picker.Item label='Select one...' value={-1} key={'first'} />)
+      items.push(<Picker.Item label={I18n.t('selectOne')} value={-1} key={'first'} />)
 
       for (var i = 0; i < options.length; i++) {
         items.push(<Picker.Item label={options[i].name} value={options[i].id} key={i} />)

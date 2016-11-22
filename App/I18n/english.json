@@ -26,6 +26,7 @@
    "city": "City",
    "pCode": "Postal Code",
    "locationId": "Country",
+   "selectOne": "Select one...",
 
    "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
    "progressiveImageComponent": "Progressive Image Component",
