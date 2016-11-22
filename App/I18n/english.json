@@ -4,6 +4,8 @@
   "cat_steps": "Cat Steps",
   "dashboard": "Dashboard",
   "device": "Device",
+  "personal_cats": "My Cats",
+  "shared_cats": "Shared Cats",
   "getStarted": "To set up FitCat, you still need to:",
   "registerYourCat": "Register your cat",
   "connectFitbitAccount": "Connect your FitBit account",

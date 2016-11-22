@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native'
+import I18n from 'react-native-i18n'
 import { default as AppConfig } from '../Config/AppConfig'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
@@ -27,6 +28,26 @@ module.exports = {
       return { code: 0, content: message }
     }).catch((error) => {
       return { code: -1, content: error }
+    })
+  },
+
+  fetchCatsList: () => {
+    let wellcatUrl = `${AppConfig.WELLCAT_BASE}/pet/pets`
+
+    return fetch(wellcatUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json()).then((responseJson) => {
+      if (responseJson.length !== 0) {
+        let catsList = []
+        catsList[I18n.t('personal_cats')] = responseJson.personal
+        catsList[I18n.t('shared_cats')] = responseJson.shared
+
+        return catsList
+      }
+      return {}
     })
   },
 
