@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsyncStorage, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native'
+import { AsyncStorage, Picker, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native'
 import { default as StorageKeys } from '../Config/StorageKeys'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -19,7 +19,8 @@ export default class FoodConsumption extends React.Component {
       hideFoodForm: true,
       formNameText: '',
       formBrandText: '',
-      formDescText: ''
+      formDescText: '',
+      selectedFood: ''
     }
 
     this.imlazydothing()
@@ -88,10 +89,9 @@ export default class FoodConsumption extends React.Component {
     if (foodTypes === null || foodTypes === undefined) {
       foodTypes = []
     }
-    console.log('HEYASDAS:LDKAL:DF')
     console.log(foodTypes)
     foodTypes.forEach((foodType, i) => {
-      displayedFoodTypes.push(<Text key={i} style={styles.sectionText}>{foodType.name}</Text>)
+      displayedFoodTypes.push(<Picker.Item key={i} style={styles.sectionText} label={foodType.name} value={foodType.name} />)
     })
     return displayedFoodTypes
   }

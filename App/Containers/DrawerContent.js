@@ -52,8 +52,8 @@ class DrawerContent extends Component {
     return (
       <ScrollView style={styles.container}>
         <DrawerButton text={I18n.t('change_cat')} onPress={this.handlePressChangeCat} />
-        <DrawerButton text={I18n.t('logOut')} onPress={this.handlePressLogOut} />
         <DrawerButton text={I18n.t('food_consumption')} onPress={this.handlePressFoodConsumption} />
+        <DrawerButton text={I18n.t('logOut')} onPress={this.handlePressLogOut} />
         {/* <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
         <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
         <DrawerButton text='API Testing' onPress={this.handlePressAPI} />
