@@ -228,15 +228,10 @@ export default class Dashboard extends React.Component {
   displayAddCatStep () {
     if (this.state[StorageKeys.CAT_ID] === null) {
       return (
-        <RoundedButton onPress={this.addCat}>
+        <RoundedButton onPress={NavigationActions.addCat}>
           {I18n.t('registerYourCat')}
         </RoundedButton>
       )
     }
-  }
-
-  addCat () {
-    WellCatManager.addCat(1)  // TODO
-    Alert.alert('Cat added', 'Please reload')
   }
 }
