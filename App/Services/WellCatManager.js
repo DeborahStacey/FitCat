@@ -51,12 +51,30 @@ module.exports = {
     })
   },
 
-  // TODO
   addCat: async (catId) => {
-    try {
-      await AsyncStorage.setItem(StorageKeys.CAT_ID, catId.toString())
-    } catch (error) {
-      console.error('Error saving to AsyncStorage', error)
-    }
+    let wellcatUrl = `${AppConfig.WELLCAT_BASE}/fitcat/register`
+
+    return fetch(wellcatUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        petID: catId
+      })
+    }).then((response) => {
+      if (response.ok) {
+        try {
+          AsyncStorage.setItem(StorageKeys.CAT_ID, catId.toString())
+        } catch (error) {
+          console.error('Error saving to AsyncStorage', error)
+        }
+      } else {
+        console.error(response)
+      }
+    }).catch((error) => {
+      console.error(error)
+    })
   }
 }

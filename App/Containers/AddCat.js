@@ -34,7 +34,7 @@ export default class AddCat extends React.Component {
   }
 
   addCat (catId) {
-    WellCatManager.addCat(catId)  // TODO
+    WellCatManager.addCat(catId)
     NavigationActions.pop()
   }
 
@@ -60,10 +60,6 @@ export default class AddCat extends React.Component {
     return (
       <View
         key={`${sectionID}-${rowID}`}
-        style={{
-          height: adjacentRowHighlighted ? 4 : 1,
-          backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#CCCCCC'
-        }}
       />
     )
   }
