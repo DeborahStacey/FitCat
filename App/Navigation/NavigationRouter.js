@@ -22,6 +22,7 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
+            <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
             <Scene initial key='dashboard' component={Dashboard} title={I18n.t('dashboard')} type={ActionConst.RESET} renderLeftButton={NavItems.hamburgerButton} >
               <Scene key='loggedInDash' />
               <Scene key='notLoggedInDash' mustLogin onLeft={() => { return }} renderLeftButton={() => { return }} />

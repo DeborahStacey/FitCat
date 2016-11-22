@@ -4,6 +4,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { Colors } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
+import Dropdown from '../Components/Dropdown'
 import { default as WellCatManager } from '../Services/WellCatManager'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
@@ -22,8 +23,25 @@ export default class WelcomeScreen extends React.Component {
       unit: '',
       city: '',
       pCode: '',
-      locationId: ''
+      locationId: -1,
+      countries: {}
     }
+  }
+
+  componentWillMount () {
+    var that = this
+    WellCatManager.getCountries()
+      .then((result) => {
+        if (result.code === 1) {
+          that.setState({
+            countries: {'items': result.content}
+          })
+        } else {
+          Alert.alert(`${I18n.t('tryLater')}`)
+        }
+      }).catch((error) => {
+        Alert.alert(error)
+      })
   }
 
   signUp (fName, lName, email, password, street, unit, city, pCode, locationId) {
@@ -134,12 +152,10 @@ export default class WelcomeScreen extends React.Component {
             <Text style={styles.sectionText} >
               {I18n.t('locationId')}
             </Text>
-            <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-              placeholder={I18n.t('locationId')}
-              placeholderTextColor={Colors.placeholderText}
-              onChangeText={(locationId) => this.setState({locationId})}
-              autoCapitalize={'none'}
+            <Dropdown
+              options={this.state.countries}
+              selectedValue={this.state.locationId}
+              onValueChange={(locationId) => this.setState({locationId})}
             />
           </View>
 

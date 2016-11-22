@@ -61,6 +61,23 @@ module.exports = {
     }).catch((error) => {
       return { code: -1, content: error }
     })
+  },
+
+  getCountries: () => {
+    let wellcatCountriesUrl = `${AppConfig.WELLCAT_BASE}/address/countries`
+
+    return fetch(wellcatCountriesUrl, {
+      method: 'GET'
+    }).then((response) => {
+      var body = response._bodyText
+      var bodyObj = JSON.parse(body)
+      if (response.ok) {
+        return { code: 1, content: bodyObj.countries }
+      }
+      return { code: 0, content: bodyObj.error }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
   }
 
 }
