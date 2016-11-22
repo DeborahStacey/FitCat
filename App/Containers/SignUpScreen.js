@@ -45,11 +45,15 @@ export default class WelcomeScreen extends React.Component {
   }
 
   signUp (fName, lName, email, password, street, unit, city, pCode, locationId) {
+    if (!unit) {
+      unit = '-'
+    }
+
     WellCatManager.signUp(fName, lName, email, password, street, unit, city, pCode, locationId)
       .then((result) => {
         if (result.code === 1) {
           AsyncStorage.setItem(StorageKeys.WELLCAT_EMAIL, email)
-          NavigationActions.welcome()
+          NavigationActions.dashboard()
         } else if (result.code === 0) {
           Alert.alert(`${I18n.t('unableWellCat')} ${result.content}.`)
         } else if (result.code === -1) {
@@ -73,7 +77,7 @@ export default class WelcomeScreen extends React.Component {
               {I18n.t('fName')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('fName')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(fName) => this.setState({fName})}
@@ -83,7 +87,7 @@ export default class WelcomeScreen extends React.Component {
               {I18n.t('lName')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('lName')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(lName) => this.setState({lName})}
@@ -93,7 +97,7 @@ export default class WelcomeScreen extends React.Component {
               {I18n.t('email')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('email')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(email) => this.setState({email})}
@@ -103,17 +107,18 @@ export default class WelcomeScreen extends React.Component {
               {I18n.t('password')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('password')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(password) => this.setState({password})}
               autoCapitalize={'none'}
+              secureTextEntry
             />
             <Text style={styles.sectionText} >
               {I18n.t('street')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('street')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(street) => this.setState({street})}
@@ -123,7 +128,7 @@ export default class WelcomeScreen extends React.Component {
               {I18n.t('unit')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('unit')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(unit) => this.setState({unit})}
@@ -133,7 +138,7 @@ export default class WelcomeScreen extends React.Component {
               {I18n.t('city')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('city')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(city) => this.setState({city})}
@@ -143,7 +148,7 @@ export default class WelcomeScreen extends React.Component {
               {I18n.t('pCode')}
             </Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
               placeholder={I18n.t('pCode')}
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(pCode) => this.setState({pCode})}
@@ -159,9 +164,11 @@ export default class WelcomeScreen extends React.Component {
             />
           </View>
 
-          <RoundedButton onPress={() => this.signUp(this.state.fName, this.state.lName, this.state.email, this.state.password, this.state.street, this.state.unit, this.state.city, this.state.pCode, this.state.locationId)}>
-            {I18n.t('signUp')}
-          </RoundedButton>
+          <View style={styles.paddedContainer}>
+            <RoundedButton onPress={() => this.signUp(this.state.fName, this.state.lName, this.state.email, this.state.password, this.state.street, this.state.unit, this.state.city, this.state.pCode, this.state.locationId)}>
+              {I18n.t('signUp')}
+            </RoundedButton>
+          </View>
         </ScrollView>
       </View>
     )

@@ -22,7 +22,7 @@
    "fName": "First Name",
    "lName": "Last Name",
    "street": "Street Address",
-   "unit": "Unit",
+   "unit": "Unit (optional)",
    "city": "City",
    "pCode": "Postal Code",
    "locationId": "Country",

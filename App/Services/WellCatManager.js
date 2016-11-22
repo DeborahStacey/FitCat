@@ -47,7 +47,7 @@ module.exports = {
           unit: `${unit}`,
           city: `${city}`,
           postalCode: `${pCode}`,
-          locationID: `${locationId}`
+          locationID: locationId
         }
       })
     }).then((response) => {
