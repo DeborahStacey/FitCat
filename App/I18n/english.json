@@ -8,9 +8,9 @@
   "shared_cats": "Shared Cats",
   "current_cat": "Viewing data for: ",
   "change_cat": "Change cat",
-  "getStarted": "To set up FitCat, you still need to:",
-  "registerYourCat": "Register your cat",
-  "connectFitbitAccount": "Connect your FitBit account",
+  "get_started": "To set up FitCat, you still need to:",
+  "register_your_cat": "Register your cat",
+  "connect_fitbit_account": "Connect your FitBit account",
   "loading": "Loading...",
 
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",

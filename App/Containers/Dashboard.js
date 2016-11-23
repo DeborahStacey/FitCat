@@ -214,7 +214,7 @@ export default class Dashboard extends React.Component {
       <View style={styles.mainContainer}>
         <ScrollView style={styles.container}>
           <Text style={styles.sectionText} >
-            {I18n.t('getStarted')}
+            {I18n.t('get_started')}
           </Text>
 
           { this.displayFitbitStep() }
@@ -228,7 +228,7 @@ export default class Dashboard extends React.Component {
     if (this.state[StorageKeys.FITBIT_ACCESS_TOKEN] === null) {
       return (
         <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
-          {I18n.t('connectFitbitAccount')}
+          {I18n.t('connect_fitbit_account')}
         </RoundedButton>
       )
     }
@@ -238,7 +238,7 @@ export default class Dashboard extends React.Component {
     if (this.state[StorageKeys.CAT_ID] === null) {
       return (
         <RoundedButton onPress={NavigationActions.addCat}>
-          {I18n.t('registerYourCat')}
+          {I18n.t('register_your_cat')}
         </RoundedButton>
       )
     }
