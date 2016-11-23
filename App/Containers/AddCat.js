@@ -33,8 +33,8 @@ export default class AddCat extends React.Component {
     })
   }
 
-  addCat (catId) {
-    WellCatManager.addCat(catId)
+  addCat (cat) {
+    WellCatManager.addCat(cat)
     NavigationActions.pop()
   }
 
@@ -48,7 +48,7 @@ export default class AddCat extends React.Component {
 
   renderRow (cat) {
     return (
-      <TouchableHighlight underlayColor={Colors.frost} onPress={() => { this.addCat(cat.petid) }}>
+      <TouchableHighlight underlayColor={Colors.frost} onPress={() => { this.addCat(cat) }}>
         <View style={styles.catRow}>
           <Text style={styles.catRowText}>{cat.name}</Text>
         </View>

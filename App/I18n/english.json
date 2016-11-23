@@ -6,6 +6,8 @@
   "device": "Device",
   "personal_cats": "My Cats",
   "shared_cats": "Shared Cats",
+  "current_cat": "Viewing data for: ",
+  "change_cat": "Change cat",
   "getStarted": "To set up FitCat, you still need to:",
   "registerYourCat": "Register your cat",
   "connectFitbitAccount": "Connect your FitBit account",

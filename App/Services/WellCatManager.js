@@ -51,7 +51,7 @@ module.exports = {
     })
   },
 
-  addCat: async (catId) => {
+  addCat: async (cat) => {
     let wellcatUrl = `${AppConfig.WELLCAT_BASE}/fitcat/register`
 
     return fetch(wellcatUrl, {
@@ -61,12 +61,13 @@ module.exports = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        petID: catId
+        petID: cat.petid
       })
     }).then((response) => {
       if (response.ok) {
         try {
-          AsyncStorage.setItem(StorageKeys.CAT_ID, catId.toString())
+          AsyncStorage.setItem(StorageKeys.CAT_ID, cat.petid.toString())
+          AsyncStorage.setItem(StorageKeys.CAT_NAME, cat.name.toString())
         } catch (error) {
           console.error('Error saving to AsyncStorage', error)
         }

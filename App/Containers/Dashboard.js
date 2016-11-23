@@ -30,6 +30,15 @@ export default class Dashboard extends React.Component {
 
     this.fetchDayOfSummaryData()
     this.fetchDeviceData()
+    this.getCatName()
+  }
+
+  async getCatName () {
+    let catName = await AsyncStorage.getItem(StorageKeys.CAT_NAME)
+
+    this.setState({
+      catName: catName
+    })
   }
 
   async fetchDeviceData () {
@@ -190,6 +199,10 @@ export default class Dashboard extends React.Component {
         <View style={styles.mainContainer}>
           <ScrollView style={styles.container}>
             <View>
+              <Text style={styles.sectionText}>
+                {I18n.t('current_cat')}
+                {this.state.catName}
+              </Text>
               <DashboardStat icon='paw' stat={this.state.steps.toString()} unit='steps' onPress={NavigationActions.catSteps} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='map-marker' stat={this.state.distance.toString()} unit='km' onPress={NavigationActions.catDistance} />
