@@ -23,6 +23,11 @@ const ApplicationStyles = {
       flex: 1,
       paddingTop: Metrics.baseMargin
     },
+    paddedContainer: {
+      flex: 1,
+      paddingTop: Metrics.baseMargin,
+      paddingBottom: 50
+    },
     section: {
       margin: Metrics.section,
       padding: Metrics.baseMargin,

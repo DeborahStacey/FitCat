@@ -97,10 +97,6 @@ export default class Dashboard extends React.Component {
       })
   }
 
-  signUp () {
-    Alert.alert('Please visit the WellCat website to sign up.')
-  }
-
   checkLoggedInState () {
     AsyncStorage.getItem(StorageKeys.WELLCAT_EMAIL).then((email) => {
       this.setState({
@@ -185,7 +181,7 @@ export default class Dashboard extends React.Component {
             </View>
 
             <Animatable.View animation='lightSpeedIn'>
-              <RoundedButton onPress={this.signUp}>
+              <RoundedButton onPress={NavigationActions.signUp}>
                 {I18n.t('signUp')}
               </RoundedButton>
             </Animatable.View>

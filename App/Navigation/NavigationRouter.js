@@ -5,6 +5,7 @@ import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 
 // screens identified by the router
+import SignUpScreen from '../Containers/SignUpScreen'
 import Dashboard from '../Containers/Dashboard'
 import AddCat from '../Containers/AddCat'
 import CatDistance from '../Containers/CatDistance'
@@ -22,10 +23,12 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
+            <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
             <Scene initial key='dashboard' component={Dashboard} title={I18n.t('dashboard')} type={ActionConst.RESET} renderLeftButton={NavItems.hamburgerButton} >
               <Scene key='loggedInDash' />
               <Scene key='notLoggedInDash' mustLogin onLeft={() => { return }} renderLeftButton={() => { return }} />
             </Scene>
+            <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
             <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
             <Scene key='device' component={Device} title={I18n.t('device')} />

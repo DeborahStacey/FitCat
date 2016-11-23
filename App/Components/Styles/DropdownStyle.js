@@ -7,7 +7,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     zIndex: 99,
-    borderRadius: 20,
     borderWidth: 2,
     borderColor: 'grey'
   },
