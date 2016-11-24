@@ -30,6 +30,15 @@ export default class Dashboard extends React.Component {
 
     this.fetchDayOfSummaryData()
     this.fetchDeviceData()
+    this.getCatName()
+  }
+
+  async getCatName () {
+    let catName = await AsyncStorage.getItem(StorageKeys.CAT_NAME)
+
+    this.setState({
+      catName: catName
+    })
   }
 
   async fetchDeviceData () {
@@ -95,7 +104,22 @@ export default class Dashboard extends React.Component {
       })
       console.log(NavigationActions)
       if (email) {
-        NavigationActions.loggedInDash()
+        AsyncStorage.multiGet([StorageKeys.FITBIT_ACCESS_TOKEN, StorageKeys.CAT_ID], (err, stores) => {
+          if (err) {
+            console.error(err)
+          }
+
+          stores.map((result, i, store) => {
+            let key = store[i][0]
+            let value = store[i][1]
+            let obj = {}
+
+            obj[key] = value
+            this.setState(obj)
+          })
+
+          NavigationActions.loggedInDash()
+        })
       } else {
         NavigationActions.notLoggedInDash()
       }
@@ -165,23 +189,58 @@ export default class Dashboard extends React.Component {
         </View>
       )
     }
+
+    if (this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== null && this.state[StorageKeys.CAT_ID] !== null) {
+      return (
+        <View style={styles.mainContainer}>
+          <ScrollView style={styles.container}>
+            <View>
+              <Text style={styles.sectionText}>
+                {I18n.t('current_cat')}
+                {this.state.catName}
+              </Text>
+              <DashboardStat icon='paw' stat={this.state.steps.toString()} unit='steps' onPress={NavigationActions.catSteps} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon='map-marker' stat={this.state.distance.toString()} unit='km' onPress={NavigationActions.catDistance} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
+            </View>
+          </ScrollView>
+        </View>
+      )
+    }
+
     return (
       <View style={styles.mainContainer}>
         <ScrollView style={styles.container}>
-          <View>
-            <DashboardStat icon='paw' stat={this.state.steps.toString()} unit='steps' onPress={NavigationActions.catSteps} />
-            <View style={styles.dashboardStatDivider} />
-            <DashboardStat icon='map-marker' stat={this.state.distance.toString()} unit='km' onPress={NavigationActions.catDistance} />
-            <View style={styles.dashboardStatDivider} />
-            <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
-            <Animatable.View animation='lightSpeedIn'>
-              <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
-                {I18n.t('connectFitbitAccount')}
-              </RoundedButton>
-            </Animatable.View>
-          </View>
+          <Text style={styles.sectionText} >
+            {I18n.t('get_started')}
+          </Text>
+
+          { this.displayFitbitStep() }
+          { this.displayAddCatStep() }
         </ScrollView>
       </View>
+    )
+  }
+
+  displayFitbitStep () {
+    if (this.state[StorageKeys.FITBIT_ACCESS_TOKEN] === null) {
+      return (
+        <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
+          {I18n.t('connect_fitbit_account')}
+        </RoundedButton>
       )
+    }
+  }
+
+  displayAddCatStep () {
+    if (this.state[StorageKeys.CAT_ID] === null) {
+      return (
+        <RoundedButton onPress={NavigationActions.addCat}>
+          {I18n.t('register_your_cat')}
+        </RoundedButton>
+      )
+    }
   }
 }
