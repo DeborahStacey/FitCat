@@ -53,6 +53,11 @@ class DrawerContent extends Component {
     NavigationActions.device()
   }
 
+  handlePressCatWeight = () => {
+    this.toggleDrawer()
+    NavigationActions.catWeight()
+  }
+
   handlePressLogOut = () => {
     this.toggleDrawer()
     AsyncStorage.setItem(StorageKeys.WELLCAT_EMAIL, '')
@@ -66,6 +71,7 @@ class DrawerContent extends Component {
         <DrawerButton text={I18n.t('cat_distance')} onPress={this.handlePressCatDistance} />
         <DrawerButton text={I18n.t('cat_steps')} onPress={this.handlePressCatSteps} />
         <DrawerButton text={I18n.t('device')} onPress={this.handlePressDevice} />
+        <DrawerButton text={I18n.t('cat_weight')} onPress={this.handlePressCatWeight} />
         <DrawerButton text={I18n.t('logOut')} onPress={this.handlePressLogOut} />
         {/* <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
         <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />

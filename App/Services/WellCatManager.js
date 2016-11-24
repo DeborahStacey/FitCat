@@ -1,4 +1,5 @@
 import { default as AppConfig } from '../Config/AppConfig'
+import Moment from 'moment'
 
 module.exports = {
 
@@ -76,6 +77,49 @@ module.exports = {
       }
       return { code: 0, content: bodyObj.error }
     }).catch((error) => {
+      return { code: -1, content: error }
+    })
+  },
+
+  getActiveCat: () => {
+    let wellcatGetPetsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/view/10`
+
+    return fetch(wellcatGetPetsUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return JSON.parse(response._bodyText)
+      }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
+  },
+
+  updateWeight: () => {
+    let wellcatUpdateWeightUrl = `${AppConfig.WELLCAT_BASE}/fitcat/weight`
+
+    return fetch(wellcatUpdateWeightUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'petID': 10,
+        'weight': 11.6,
+        'date': Moment().format('YYYY[-]MM[-]DD')
+      })
+    }).then((response) => {
+      console.log(response)
+      if (response.ok) {
+        console.log(response)
+        return
+      }
+    }).catch((error) => {
+      console.log(error)
       return { code: -1, content: error }
     })
   }

@@ -11,6 +11,7 @@ import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
 import Device from '../Containers/Device'
 import NavItems from './NavItems'
+import CatWeight from '../Containers/CatWeight'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -31,6 +32,7 @@ class NavigationRouter extends Component {
             <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
             <Scene key='device' component={Device} title={I18n.t('device')} />
+            <Scene key='catWeight' component={CatWeight} title={I18n.t('cat_weight')} />
           </Scene>
         </Scene>
       </Router>
