@@ -1,7 +1,8 @@
 import React from 'react'
-import { AsyncStorage, Picker, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native'
+import { AsyncStorage, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native'
 import { default as StorageKeys } from '../Config/StorageKeys'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { Dropdown } from '../Components/Dropdown'
 
 import styles from './Styles/FoodConsumptionStyle'
 
@@ -58,7 +59,7 @@ export default class FoodConsumption extends React.Component {
       foodTypes = []
     }
 
-    console.log(foodTypes)
+    foodTypes = this.buildFoodTypeDisplay()
     return foodTypes
   }
 
@@ -91,7 +92,7 @@ export default class FoodConsumption extends React.Component {
     }
     console.log(foodTypes)
     foodTypes.forEach((foodType, i) => {
-      displayedFoodTypes.push(<Picker.Item key={i} style={styles.sectionText} label={foodType.name} value={foodType.name} />)
+      displayedFoodTypes.push({'name': foodType.brand + ' - ' + foodType.name, 'value': foodType})
     })
     return displayedFoodTypes
   }
@@ -135,9 +136,11 @@ export default class FoodConsumption extends React.Component {
               </TouchableOpacity>
             </View>
           }
-          {
-            this.state.foodTypes && this.buildFoodTypeDisplay()
-          }
+
+          <Dropdown
+            options={this.state.foodTypes}
+            onValueChange={() => { console.log('hi there') }}
+            selectedValue={0} />
         </ScrollView>
       </View>
     )
