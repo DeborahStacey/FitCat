@@ -1,4 +1,7 @@
+import { AsyncStorage } from 'react-native'
+import I18n from 'react-native-i18n'
 import { default as AppConfig } from '../Config/AppConfig'
+import { default as StorageKeys } from '../Config/StorageKeys'
 
 module.exports = {
 
@@ -78,6 +81,53 @@ module.exports = {
     }).catch((error) => {
       return { code: -1, content: error }
     })
-  }
+  },
 
+  fetchCatsList: () => {
+    let wellcatUrl = `${AppConfig.WELLCAT_BASE}/pet/pets`
+
+    return fetch(wellcatUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json()).then((responseJson) => {
+      if (responseJson.length !== 0) {
+        let catsList = []
+        catsList[I18n.t('personal_cats')] = responseJson.personal
+        catsList[I18n.t('shared_cats')] = responseJson.shared
+
+        return catsList
+      }
+      return {}
+    })
+  },
+
+  addCat: async (cat) => {
+    let wellcatUrl = `${AppConfig.WELLCAT_BASE}/fitcat/register`
+
+    return fetch(wellcatUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        petID: cat.petid
+      })
+    }).then((response) => {
+      if (response.ok) {
+        try {
+          AsyncStorage.setItem(StorageKeys.CAT_ID, cat.petid.toString())
+          AsyncStorage.setItem(StorageKeys.CAT_NAME, cat.name.toString())
+        } catch (error) {
+          console.error('Error saving to AsyncStorage', error)
+        }
+      } else {
+        console.error(response)
+      }
+    }).catch((error) => {
+      console.error(error)
+    })
+  }
 }
