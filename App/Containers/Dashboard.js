@@ -44,7 +44,7 @@ export default class Dashboard extends React.Component {
   }
 
   async getWellCatData () {
-    let wellcatInfo = await WellCatManager.getActiveCat(StorageKeys.CAT_ID)
+    let wellcatInfo = await WellCatManager.getActiveCat()
     this.setState({
       weight: wellcatInfo.pet.weight
     })

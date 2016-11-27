@@ -104,7 +104,8 @@ module.exports = {
     })
   },
 
-  getActiveCat: (catId) => {
+  async getActiveCat () {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
     let wellcatGetPetsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/view/${catId}`
 
     return fetch(wellcatGetPetsUrl, {
@@ -121,7 +122,8 @@ module.exports = {
     })
   },
 
-  updateWeight: (weight) => {
+  async updateWeight (weight) {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
     let wellcatUpdateWeightUrl = `${AppConfig.WELLCAT_BASE}/fitcat/weight`
 
     return fetch(wellcatUpdateWeightUrl, {
@@ -131,7 +133,7 @@ module.exports = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        'petID': 10,
+        'petID': catId,
         'weight': weight,
         'date': Moment().format('YYYY[-]MM[-]DD')
       })
