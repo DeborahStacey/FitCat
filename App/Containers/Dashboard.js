@@ -25,12 +25,14 @@ export default class Dashboard extends React.Component {
       deviceBattery: '',
       email: '',
       password: '',
-      isLoading: true
+      isLoading: true,
+      weight: 0
     }
 
     this.fetchDayOfSummaryData()
     this.fetchDeviceData()
     this.getCatName()
+    this.getWellCatData()
   }
 
   async getCatName () {
@@ -38,6 +40,13 @@ export default class Dashboard extends React.Component {
 
     this.setState({
       catName: catName
+    })
+  }
+
+  async getWellCatData () {
+    let wellcatInfo = await WellCatManager.getActiveCat(StorageKeys.CAT_ID)
+    this.setState({
+      weight: wellcatInfo.pet.weight
     })
   }
 
@@ -202,6 +211,8 @@ export default class Dashboard extends React.Component {
               <DashboardStat icon='paw' stat={this.state.steps.toString()} unit='steps' onPress={NavigationActions.catSteps} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='map-marker' stat={this.state.distance.toString()} unit='km' onPress={NavigationActions.catDistance} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon='balance-scale' stat={this.state.weight.toString()} unit='lbs' onPress={NavigationActions.catWeight} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
             </View>

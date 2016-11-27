@@ -104,8 +104,8 @@ module.exports = {
     })
   },
 
-  getActiveCat: () => {
-    let wellcatGetPetsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/view/10`
+  getActiveCat: (catId) => {
+    let wellcatGetPetsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/view/${catId}`
 
     return fetch(wellcatGetPetsUrl, {
       headers: {
@@ -121,7 +121,7 @@ module.exports = {
     })
   },
 
-  updateWeight: () => {
+  updateWeight: (weight) => {
     let wellcatUpdateWeightUrl = `${AppConfig.WELLCAT_BASE}/fitcat/weight`
 
     return fetch(wellcatUpdateWeightUrl, {
@@ -132,7 +132,7 @@ module.exports = {
       },
       body: JSON.stringify({
         'petID': 10,
-        'weight': 11.6,
+        'weight': weight,
         'date': Moment().format('YYYY[-]MM[-]DD')
       })
     }).then((response) => {

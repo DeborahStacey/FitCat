@@ -1,5 +1,7 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, TextInput } from 'react-native'
+import I18n from 'react-native-i18n'
+import { Colors } from '../Themes'
 import { default as WellCatManager } from '../Services/WellCatManager'
 import RoundedButton from '../Components/RoundedButton'
 import styles from './Styles/CatWeightStyle'
@@ -8,7 +10,8 @@ export default class CatWeight extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      weight: 0
+      weight: 0,
+      inputWeight: 0
     }
     this.getWeight()
   }
@@ -23,7 +26,7 @@ export default class CatWeight extends React.Component {
   }
 
   updateWeightPress = () => {
-    WellCatManager.updateWeight()
+    WellCatManager.updateWeight(this.state.inputWeight)
     this.getWeight()
   }
 
@@ -31,8 +34,15 @@ export default class CatWeight extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <Text>Current Weight: {this.state.weight}</Text>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
+          placeholder={I18n.t('update_weight_placeholder')}
+          placeholderTextColor={Colors.placeholderText}
+          autoCapitalize={'none'}
+          onChangeText={(inputWeight) => this.setState({inputWeight})}
+        />
         <RoundedButton onPress={() => this.updateWeightPress()}>
-          Update Weight
+          {I18n.t('update_weight')}
         </RoundedButton>
       </View>
       )
