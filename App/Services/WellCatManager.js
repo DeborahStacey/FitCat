@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import I18n from 'react-native-i18n'
 import { default as AppConfig } from '../Config/AppConfig'
+import Moment from 'moment'
 import { default as StorageKeys } from '../Config/StorageKeys'
 
 module.exports = {
@@ -85,8 +86,8 @@ module.exports = {
 
   fetchCatsList: () => {
     let wellcatUrl = `${AppConfig.WELLCAT_BASE}/pet/pets`
-
     return fetch(wellcatUrl, {
+
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -100,6 +101,51 @@ module.exports = {
         return catsList
       }
       return {}
+    })
+  },
+
+  async getActiveCat () {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    let wellcatGetPetsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/view/${catId}`
+
+    return fetch(wellcatGetPetsUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return JSON.parse(response._bodyText)
+      }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
+  },
+
+  async updateWeight (weight) {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    let wellcatUpdateWeightUrl = `${AppConfig.WELLCAT_BASE}/fitcat/weight`
+
+    return fetch(wellcatUpdateWeightUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'petID': catId,
+        'weight': weight,
+        'date': Moment().format('YYYY[-]MM[-]DD')
+      })
+    }).then((response) => {
+      console.log(response)
+      if (response.ok) {
+        console.log(response)
+        return
+      }
+    }).catch((error) => {
+      console.log(error)
+      return { code: -1, content: error }
     })
   },
 
