@@ -33,17 +33,22 @@ export default class CatWeight extends React.Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <Text>Current Weight: {this.state.weight}</Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
-          placeholder={I18n.t('update_weight_placeholder')}
-          placeholderTextColor={Colors.placeholderText}
-          autoCapitalize={'none'}
-          onChangeText={(inputWeight) => this.setState({inputWeight})}
-        />
-        <RoundedButton onPress={() => this.updateWeightPress()}>
-          {I18n.t('update_weight')}
-        </RoundedButton>
+        <Text style={styles.weightText}>Current Weight: {this.state.weight}</Text>
+        <View>
+          <TextInput
+            style={styles.updateInput}
+            placeholder={I18n.t('update_weight_placeholder')}
+            placeholderTextColor={Colors.placeholderText}
+            autoCapitalize={'none'}
+            onChangeText={(inputWeight) => this.setState({inputWeight})}
+            keyboardType='numeric'
+          />
+        </View>
+        <View style={styles.updateButtonView}>
+          <RoundedButton onPress={() => this.updateWeightPress()}>
+            {I18n.t('update_weight')}
+          </RoundedButton>
+        </View>
       </View>
       )
   }

@@ -37,11 +37,6 @@ class DrawerContent extends Component {
     NavigationActions.addCat()
   }
 
-  handlePressCatWeight = () => {
-    this.toggleDrawer()
-    NavigationActions.catWeight()
-  }
-
   handlePressLogOut = () => {
     this.toggleDrawer()
     AsyncStorage.setItem(StorageKeys.WELLCAT_EMAIL, '')
@@ -51,7 +46,6 @@ class DrawerContent extends Component {
   render () {
     return (
       <ScrollView style={styles.container}>
-        <DrawerButton text={I18n.t('cat_weight')} onPress={this.handlePressCatWeight} />
         <DrawerButton text={I18n.t('change_cat')} onPress={this.handlePressChangeCat} />
         <DrawerButton text={I18n.t('logOut')} onPress={this.handlePressLogOut} />
       </ScrollView>
