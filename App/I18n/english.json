@@ -17,6 +17,7 @@
   "weight_history": "Weight History",
   "current_weight": "Current Weight:",
   "food_consumption": "Food Consumption",
+  "submitFoodRecord": "Submit Food Record",
 
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",
   "welcomeSignUp": "Sign up for WellCat by providing the following information.",

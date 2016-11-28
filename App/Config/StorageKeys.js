@@ -5,6 +5,6 @@ module.exports = {
 
   CAT_ID: 'cat_id',
   CAT_NAME: 'cat_name',
-  
+
   SAVED_FOOD_TYPES: 'saved_food_types'
 }

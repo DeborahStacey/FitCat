@@ -3,6 +3,7 @@ import I18n from 'react-native-i18n'
 import { default as AppConfig } from '../Config/AppConfig'
 import Moment from 'moment'
 import { default as StorageKeys } from '../Config/StorageKeys'
+import Moment from 'moment'
 
 module.exports = {
 
@@ -169,6 +170,31 @@ module.exports = {
           console.error('Error saving to AsyncStorage', error)
         }
       } else {
+        console.error(response)
+      }
+    }).catch((error) => {
+      console.error(error)
+    })
+  },
+
+  submitFoodRecord: async (petId, foodString, foodDescription, foodAmount) => {
+    let wellcatUrl = `${AppConfig.WELLCAT_BASE}/fitcat/food`
+
+    return fetch(wellcatUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        petID: petId,
+        brand: foodString,
+        description: foodDescription,
+        amount: foodAmount,
+        date: Moment().format('YYYY-MM-DD')
+      })
+    }).then((response) => {
+      if (!response.ok) {
         console.error(response)
       }
     }).catch((error) => {

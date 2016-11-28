@@ -1,8 +1,10 @@
 import React from 'react'
-import { AsyncStorage, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native'
+import { AsyncStorage, Picker, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native'
 import { default as StorageKeys } from '../Config/StorageKeys'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Dropdown } from '../Components/Dropdown'
+import RoundedButton from '../Components/RoundedButton'
+import { default as WellCatManager } from '../Services/WellCatManager'
+import I18n from 'react-native-i18n'
 
 import styles from './Styles/FoodConsumptionStyle'
 
@@ -21,20 +23,68 @@ export default class FoodConsumption extends React.Component {
       formNameText: '',
       formBrandText: '',
       formDescText: '',
-      selectedFood: ''
+      selectedFood: {},
+      selectedFoodIndex: -1
     }
-
-    this.imlazydothing()
-  }
-
-  imlazydothing = async () => {
-    this.setState({foodTypes: await this.getFoodTypes()})
   }
 
   handleAddFoodTypePress = () => {
     this.setState({
       hideFoodForm: false
     })
+  }
+
+  saveFoodTypes = () => {
+    if (this.state.formNameText === '') {
+      // TODO:: some kind of error validation
+      return
+    }
+    var foodTypes = this.state.foodTypes
+    var newFoodType = {'name': this.state.formNameText, 'brand': this.state.formBrandText, 'description': this.state.formDescText}
+    foodTypes.push(newFoodType)
+    this.setState({foodTypes: foodTypes})
+    AsyncStorage.setItem(StorageKeys.SAVED_FOOD_TYPES, JSON.stringify(foodTypes))
+    this.setState({
+      hideFoodForm: true,
+      formNameText: '',
+      formBrandText: '',
+      formDescText: ''
+    })
+  }
+
+  buildPicker = () => {
+    var foodTypes = this.state.foodTypes
+    console.log('BUILDING A PICKER YO!')
+    console.log(foodTypes)
+    if (foodTypes.length === 0) {
+      return (
+        <Picker.Item label='No saved food types' value={{}} />
+      )
+    } else {
+      var pickerItems = []
+      for (var i = 0; i < foodTypes.length; i++) {
+        pickerItems.push(<Picker.Item key={i} label={foodTypes[i].brand + ' - ' + foodTypes[i].name} value={i} />)
+      }
+      return (
+        pickerItems
+      )
+    }
+  }
+
+  selectedFoodChanged = (foodIndex) => {
+    this.setState({
+      selectedFoodIndex: foodIndex,
+      selectedFood: this.state.foodTypes[foodIndex]
+    })
+  }
+
+  submitFoodRecord = async () => {
+    console.log('SUBMIT METHOD')
+    var currentSelectedFood = this.state.selectedFood
+    console.log(currentSelectedFood)
+    var foodString = currentSelectedFood.brand.length > 0 ? currentSelectedFood.brand + ' - ' + currentSelectedFood.name : currentSelectedFood.name
+    var currentPetId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    WellCatManager.submitFoodRecord(currentPetId, foodString, currentSelectedFood.description, parseFloat(this.state.formCupsText))
   }
 
   resetAsyncStorage = async () => {
@@ -46,55 +96,18 @@ export default class FoodConsumption extends React.Component {
     }
   }
 
-  getFoodTypes = async () => {
-    var foodTypes = []
+  componentWillMount () {
     try {
-      var stringFoodTypes = await AsyncStorage.getItem(StorageKeys.SAVED_FOOD_TYPES)
-      if (stringFoodTypes != null) {
-        foodTypes = JSON.parse(stringFoodTypes)
-      }
+      AsyncStorage.getItem(StorageKeys.SAVED_FOOD_TYPES).then(response => {
+        var parsed = JSON.parse(response)
+        console.log('FOOD TYPES')
+        console.log(parsed)
+        this.setState({foodTypes: parsed})
+      })
     } catch (error) {
-      console.log('Failed trying to read food types from AsyncStorage')
-      console.log(error)
-      foodTypes = []
-    }
-
-    foodTypes = this.buildFoodTypeDisplay()
-    return foodTypes
-  }
-
-  saveFoodTypes = async () => {
-    var newFoodType = {
-      name: this.state.formNameText,
-      brand: this.state.formBrandText,
-      description: this.state.formDescText
-    }
-
-    var foodTypes = this.state.foodTypes
-    foodTypes.push(newFoodType)
-    try {
-      await AsyncStorage.setItem(StorageKeys.SAVED_FOOD_TYPES, JSON.stringify(foodTypes))
-    } catch (error) {
-      console.log('Failed trying to save food types to AsyncStorage')
+      console.log('Error getting food types!')
       console.log(error)
     }
-
-    console.log('SAVING FOOD TYPES')
-    console.log(foodTypes)
-    this.setState({foodTypes: foodTypes})
-  }
-
-  buildFoodTypeDisplay = () => {
-    var foodTypes = this.state.foodTypes
-    var displayedFoodTypes = []
-    if (foodTypes === null || foodTypes === undefined) {
-      foodTypes = []
-    }
-    console.log(foodTypes)
-    foodTypes.forEach((foodType, i) => {
-      displayedFoodTypes.push({'name': foodType.brand + ' - ' + foodType.name, 'value': foodType})
-    })
-    return displayedFoodTypes
   }
 
   render () {
@@ -137,10 +150,25 @@ export default class FoodConsumption extends React.Component {
             </View>
           }
 
-          <Dropdown
-            options={this.state.foodTypes}
-            onValueChange={() => { console.log('hi there') }}
-            selectedValue={0} />
+          <View style={styles.pickerContainerStyle}>
+            <Picker style={styles.pickerStyle} selectedValue={this.state.selectedFoodIndex} onValueChange={this.selectedFoodChanged}>
+              {this.buildPicker()}
+            </Picker>
+          </View>
+
+          <Text style={styles.sectionText}>
+            How many cups did your cat eat?
+          </Text>
+          <TextInput
+            style={{height: 40}}
+            keyboardType={'numeric'}
+            placeholder='Cups'
+            onChangeText={(cups) => this.setState({
+              formCupsText: cups
+            })} />
+          <RoundedButton onPress={() => this.submitFoodRecord()}>
+            {I18n.t('submitFoodRecord')}
+          </RoundedButton>
         </ScrollView>
       </View>
     )

@@ -11,5 +11,12 @@ export default StyleSheet.create({
   addFoodTypeIcon: {
     marginLeft: 10,
     color: Colors.mainText
+  },
+  pickerContainerStyle: {
+    padding: 15
+  },
+  pickerStyle: {
+    borderWidth: 2,
+    padding: 15
   }
 })
