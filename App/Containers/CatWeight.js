@@ -41,25 +41,29 @@ export default class CatWeight extends React.Component {
 
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.weightText}>Current Weight: {this.state.weight}</Text>
+        <Text style={styles.weightText}>{I18n.t('current_weight')} {this.state.weight}</Text>
         <View>
           <View style={styles.updateContainer}>
-            <TextInput
-              style={styles.updateInput}
-              placeholder={I18n.t('update_weight_placeholder')}
-              placeholderTextColor={Colors.placeholderText}
-              autoCapitalize={'none'}
-              onChangeText={(inputWeight) => this.setState({inputWeight})}
-              keyboardType='numeric'
-              maxLength={6}
-            />
-            <RoundedButton onPress={() => this.updateWeightPress()}>
-              {I18n.t('update_weight')}
-            </RoundedButton>
+            <View style={styles.inputView}>
+              <TextInput
+                style={styles.updateInput}
+                placeholder={I18n.t('update_weight_placeholder')}
+                placeholderTextColor={Colors.placeholderText}
+                autoCapitalize={'none'}
+                onChangeText={(inputWeight) => this.setState({inputWeight})}
+                keyboardType='numeric'
+                maxLength={6}
+              />
+            </View>
+            <View style={styles.buttonView} >
+              <RoundedButton onPress={() => this.updateWeightPress()}>
+                {I18n.t('update_weight')}
+              </RoundedButton>
+            </View>
           </View>
         </View>
         <View style={styles.divider} />
-        <Text style={styles.weightText}>Weight History</Text>
+        <Text style={styles.weightText}>{I18n.t('weight_history')}</Text>
         <GraphComponent data={weightHistory} barMultiplier={14} />
       </View>
     )

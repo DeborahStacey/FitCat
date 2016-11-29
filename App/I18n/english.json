@@ -2,7 +2,7 @@
   "fitcat": "FitCat",
   "cat_distance": "Cat Distance",
   "cat_steps": "Cat Steps",
-  "cat_weight": "Cat Weight",
+  "cat_weight": "Weight",
   "update_weight_placeholder": "Cat Weight (lbs)",
   "update_weight": "Update",
   "dashboard": "Dashboard",
@@ -15,7 +15,9 @@
   "register_your_cat": "Register your cat",
   "connect_fitbit_account": "Connect your FitBit account",
   "loading": "Loading...",
-
+  "weight_history": "Weight History",
+  "current_weight": "Current weight:",
+  
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",
   "welcomeSignUp": "Sign up for WellCat by providing the following information.",
   "tryLater": "Oops! Something went wrong. Please try again later.",

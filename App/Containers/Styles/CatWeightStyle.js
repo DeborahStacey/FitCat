@@ -14,13 +14,17 @@ export default StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     paddingLeft: 10,
-    minWidth: 250
+    minWidth: 120,
+    alignSelf: 'stretch'
   },
   updateContainer: {
     flexDirection: 'row',
     marginHorizontal: 25
   },
-  updateButtonView: {
+  inputView: {
+    flex: 1
+  },
+  buttonView: {
     flex: 1
   },
   divider: {
