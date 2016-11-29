@@ -8,6 +8,7 @@ import NavigationDrawer from './NavigationDrawer'
 import SignUpScreen from '../Containers/SignUpScreen'
 import Dashboard from '../Containers/Dashboard'
 import AddCat from '../Containers/AddCat'
+import NewCat from '../Containers/NewCat'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
 import Device from '../Containers/Device'
@@ -35,6 +36,7 @@ class NavigationRouter extends Component {
             <Scene key='device' component={Device} title={I18n.t('device')} />
             <Scene key='catWeight' component={CatWeight} title={I18n.t('cat_weight')} />
             <Scene key='addCat' component={AddCat} title={I18n.t('register_your_cat')} />
+            <Scene key='newCat' component={NewCat} title={I18n.t('new_cat')} />
           </Scene>
         </Scene>
       </Router>
