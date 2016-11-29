@@ -96,7 +96,6 @@ module.exports = {
       if (responseJson.length !== 0) {
         let catsList = []
         catsList[I18n.t('personal_cats')] = responseJson.personal
-        catsList[I18n.t('shared_cats')] = responseJson.shared
 
         return catsList
       }
