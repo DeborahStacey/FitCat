@@ -109,6 +109,6 @@ export default class WeeklyActivityBase extends React.Component {
           <GraphComponent data={this.state.currentWeekData} barMultiplier={multiplierValue} />
         </ScrollView>
       </View>
-      )
+    )
   }
 }

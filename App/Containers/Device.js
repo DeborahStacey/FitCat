@@ -54,6 +54,6 @@ export default class Device extends React.Component {
           </Text>
         </ScrollView>
       </View>
-      )
+    )
   }
 }
