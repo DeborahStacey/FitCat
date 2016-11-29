@@ -41,7 +41,7 @@ export default class CatWeight extends React.Component {
 
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.weightText}>{I18n.t('current_weight')} {this.state.weight}</Text>
+        <Text style={styles.weightText}>{I18n.t('current_weight')} {this.state.weight} lbs</Text>
         <View>
           <View style={styles.updateContainer}>
             <View style={styles.inputView}>
