@@ -51,6 +51,7 @@ export default class CatWeight extends React.Component {
               autoCapitalize={'none'}
               onChangeText={(inputWeight) => this.setState({inputWeight})}
               keyboardType='numeric'
+              maxLength={6}
             />
             <RoundedButton onPress={() => this.updateWeightPress()}>
               {I18n.t('update_weight')}
