@@ -16,7 +16,7 @@
   "connect_fitbit_account": "Connect your FitBit account",
   "loading": "Loading...",
   "weight_history": "Weight History",
-  "current_weight": "Current weight:",
+  "current_weight": "Current weight (lbs):",
 
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",
   "welcomeSignUp": "Sign up for WellCat by providing the following information.",
