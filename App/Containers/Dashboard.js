@@ -50,7 +50,7 @@ export default class Dashboard extends React.Component {
     let wellcatInfo = await WellCatManager.getActiveCat()
     var foodSync = 0.0
     var waterSync = 0.0
-    if (wellcatInfo === undefined) {
+    if (wellcatInfo === undefined || wellcatInfo.fitcat === undefined) {
       return
     }
     try {
@@ -282,7 +282,7 @@ export default class Dashboard extends React.Component {
   }
 
   displayFitbitStep () {
-    if (this.fitbitAccessTokenExists()) {
+    if (!this.fitbitAccessTokenExists()) {
       return (
         <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
           {I18n.t('connect_fitbit_account')}
@@ -292,7 +292,7 @@ export default class Dashboard extends React.Component {
   }
 
   displayAddCatStep () {
-    if (this.catIdExists()) {
+    if (!this.catIdExists()) {
       return (
         <RoundedButton onPress={NavigationActions.addCat}>
           {I18n.t('register_your_cat')}
