@@ -12,11 +12,17 @@ export default StyleSheet.create({
     marginLeft: 10,
     color: Colors.mainText
   },
-  pickerContainerStyle: {
-    padding: 15
+  paddedContainer: {
+    padding: 25
   },
   pickerStyle: {
-    borderWidth: 2,
-    padding: 15
+    borderWidth: 1
+  },
+  labelText: {
+    color: Colors.mainText,
+    fontWeight: '700'
+  },
+  valueText: {
+    paddingLeft: 25
   }
 })

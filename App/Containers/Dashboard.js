@@ -26,7 +26,9 @@ export default class Dashboard extends React.Component {
       email: '',
       password: '',
       isLoading: true,
-      weight: 0
+      weight: 0,
+      foodSync: 0,
+      waterSync: 0
     }
 
     this.fetchDayOfSummaryData()
@@ -45,8 +47,25 @@ export default class Dashboard extends React.Component {
 
   async getWellCatData () {
     let wellcatInfo = await WellCatManager.getActiveCat()
+    var foodSync = 0.0
+    var waterSync = 0.0
+    if (wellcatInfo === undefined) {
+      return
+    }
+    try {
+      var latestDate = Moment(wellcatInfo.fitcat[0].date)
+      var today = Moment()
+      if (today.isSame(latestDate, 'day')) {
+        foodSync = wellcatInfo.fitcat[0].foodconsumption ? wellcatInfo.fitcat[0].foodconsumption : 0.0
+        waterSync = wellcatInfo.fitcat[0].waterconsumption ? wellcatInfo.fitcat[0].waterconsumption : 0.0
+      }
+    } catch (error) {
+      console.error(error)
+    }
     this.setState({
-      weight: wellcatInfo.pet.weight
+      weight: wellcatInfo.pet.weight,
+      foodSync: foodSync,
+      waterSync: waterSync
     })
   }
 
@@ -111,7 +130,6 @@ export default class Dashboard extends React.Component {
       this.setState({
         isLoading: false
       })
-      console.log(NavigationActions)
       if (email) {
         AsyncStorage.multiGet([StorageKeys.FITBIT_ACCESS_TOKEN, StorageKeys.CAT_ID], (err, stores) => {
           if (err) {
@@ -216,6 +234,11 @@ export default class Dashboard extends React.Component {
               <DashboardStat icon='balance-scale' stat={this.state.weight.toString()} unit='lbs' onPress={NavigationActions.catWeight} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon='spoon' stat={this.state.foodSync.toString()} unit='cups today' onPress={NavigationActions.foodConsumption} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon='tint' stat={this.state.waterSync.toString()} unit='cups today' onPress={NavigationActions.waterConsumption} />
+              <View style={styles.dashboardStatDivider} />
             </View>
           </ScrollView>
         </View>

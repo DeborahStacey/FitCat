@@ -17,7 +17,15 @@
   "weight_history": "Weight History",
   "current_weight": "Current Weight:",
   "food_consumption": "Food Consumption",
-  "submitFoodRecord": "Submit Food Record",
+  "view_food_consumption": "Food Records",
+  "save_food_type": "Save Food Type",
+  "submit_food_record": "Submit Food Record",
+  "water_consumption": "Water Consumption",
+  "view_water_consumption": "Water Records",
+  "submit_water_record": "Submit Water Record",
+  "cups": " cups",
+  "cups_of_water": " cups of water",
+  
 
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",
   "welcomeSignUp": "Sign up for WellCat by providing the following information.",

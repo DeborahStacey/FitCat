@@ -1,12 +1,13 @@
 import React from 'react'
 import { AsyncStorage, Picker, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 import { default as StorageKeys } from '../Config/StorageKeys'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import RoundedButton from '../Components/RoundedButton'
 import { default as WellCatManager } from '../Services/WellCatManager'
 import I18n from 'react-native-i18n'
 
-import styles from './Styles/FoodConsumptionStyle'
+import styles from './Styles/ConsumptionStyles'
 
 /*
 Name
@@ -30,7 +31,7 @@ export default class FoodConsumption extends React.Component {
 
   handleAddFoodTypePress = () => {
     this.setState({
-      hideFoodForm: false
+      hideFoodForm: !this.state.hideFoodForm
     })
   }
 
@@ -39,7 +40,7 @@ export default class FoodConsumption extends React.Component {
       // TODO:: some kind of error validation
       return
     }
-    var foodTypes = this.state.foodTypes
+    var foodTypes = this.state.foodTypes || []
     var newFoodType = {'name': this.state.formNameText, 'brand': this.state.formBrandText, 'description': this.state.formDescText}
     foodTypes.push(newFoodType)
     this.setState({foodTypes: foodTypes})
@@ -54,9 +55,7 @@ export default class FoodConsumption extends React.Component {
 
   buildPicker = () => {
     var foodTypes = this.state.foodTypes
-    console.log('BUILDING A PICKER YO!')
-    console.log(foodTypes)
-    if (foodTypes.length === 0) {
+    if (foodTypes === null || foodTypes.length === 0) {
       return (
         <Picker.Item label='No saved food types' value={{}} />
       )
@@ -79,29 +78,18 @@ export default class FoodConsumption extends React.Component {
   }
 
   submitFoodRecord = async () => {
-    console.log('SUBMIT METHOD')
-    var currentSelectedFood = this.state.selectedFood
-    console.log(currentSelectedFood)
-    var foodString = currentSelectedFood.brand.length > 0 ? currentSelectedFood.brand + ' - ' + currentSelectedFood.name : currentSelectedFood.name
-    var currentPetId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
-    WellCatManager.submitFoodRecord(currentPetId, foodString, currentSelectedFood.description, parseFloat(this.state.formCupsText))
-  }
-
-  resetAsyncStorage = async () => {
-    try {
-      await AsyncStorage.setItem(StorageKeys.SAVED_FOOD_TYPES, '')
-      this.setState({foodTypes: []})
-    } catch (error) {
-      console.log(error)
+    if (this.state.foodTypes.length === 0) {
+      return
     }
+    var currentSelectedFood = !this.state.selectedFood.brand ? this.state.foodTypes[0] : this.state.selectedFood
+    var currentPetId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    WellCatManager.submitFoodRecord(currentPetId, currentSelectedFood.brand, currentSelectedFood.name, currentSelectedFood.description, parseFloat(this.state.formCupsText))
   }
 
   componentWillMount () {
     try {
       AsyncStorage.getItem(StorageKeys.SAVED_FOOD_TYPES).then(response => {
         var parsed = JSON.parse(response)
-        console.log('FOOD TYPES')
-        console.log(parsed)
         this.setState({foodTypes: parsed})
       })
     } catch (error) {
@@ -116,58 +104,61 @@ export default class FoodConsumption extends React.Component {
         <ScrollView style={styles.container}>
           <TouchableOpacity style={styles.addFoodTypeContainer} onPress={this.handleAddFoodTypePress}>
             <Text style={styles.sectionText}>Add a new food type</Text>
-            <Icon style={styles.addFoodTypeIcon} name='plus' size={20} />
+            {this.state.hideFoodForm ? <Icon style={styles.addFoodTypeIcon} name='plus' size={20} /> : <Icon style={styles.addFoodTypeIcon} name='minus' size={20} />}
           </TouchableOpacity>
           {this.state.hideFoodForm ? null
-            : <View style={styles.container}>
+            : <View style={styles.paddedContainer}>
               <TextInput
-                style={{height: 40}}
+                style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
                 placeholder='Name (Required)'
                 onChangeText={(text) => this.setState({
                   formNameText: text
                 })}
               />
               <TextInput
-                style={{height: 40}}
+                style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
                 placeholder='Brand'
                 onChangeText={(text) => this.setState({
                   formBrandText: text
                 })}
               />
               <TextInput
-                style={{height: 40}}
+                style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
                 placeholder='Description'
                 onChangeText={(text) => this.setState({
                   formDescText: text
                 })}
               />
-              <TouchableOpacity onPress={this.saveFoodTypes}>
-                <Text style={styles.sectionText}>Click</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.resetAsyncStorage}>
-                <Text style={styles.sectionText}>Clear</Text>
-              </TouchableOpacity>
+              <RoundedButton onPress={this.saveFoodTypes()}>
+                {I18n.t('save_food_type')}
+              </RoundedButton>
             </View>
           }
 
-          <View style={styles.pickerContainerStyle}>
+          <View style={styles.paddedContainer}>
             <Picker style={styles.pickerStyle} selectedValue={this.state.selectedFoodIndex} onValueChange={this.selectedFoodChanged}>
               {this.buildPicker()}
             </Picker>
           </View>
 
-          <Text style={styles.sectionText}>
-            How many cups did your cat eat?
-          </Text>
-          <TextInput
-            style={{height: 40}}
-            keyboardType={'numeric'}
-            placeholder='Cups'
-            onChangeText={(cups) => this.setState({
-              formCupsText: cups
-            })} />
+          <View style={styles.paddedContainer}>
+            <Text style={styles.sectionText}>
+              How many cups did your cat eat?
+            </Text>
+            <TextInput
+              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
+              keyboardType={'numeric'}
+              placeholder='Cups'
+              onChangeText={(cups) => this.setState({
+                formCupsText: cups
+              })} />
+          </View>
           <RoundedButton onPress={() => this.submitFoodRecord()}>
-            {I18n.t('submitFoodRecord')}
+            {I18n.t('submit_food_record')}
+          </RoundedButton>
+
+          <RoundedButton onPress={() => NavigationActions.viewFoodConsumption()}>
+            {I18n.t('view_food_consumption')}
           </RoundedButton>
         </ScrollView>
       </View>
