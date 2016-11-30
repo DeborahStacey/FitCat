@@ -50,6 +50,6 @@ export default class CatWeight extends React.Component {
           </RoundedButton>
         </View>
       </View>
-      )
+    )
   }
 }

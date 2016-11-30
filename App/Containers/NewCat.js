@@ -1,12 +1,11 @@
 import React from 'react'
-import { Alert, AsyncStorage, DatePickerIOS, Platform, ScrollView, Switch, Text, TextInput, View } from 'react-native'
+import { Alert, DatePickerIOS, Platform, ScrollView, Switch, Text, TextInput, View } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { Colors } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
 import Dropdown from '../Components/Dropdown'
 import { default as WellCatManager } from '../Services/WellCatManager'
-import { default as StorageKeys } from '../Config/StorageKeys'
 
 // Styles
 import styles from './Styles/NewCatStyle'
@@ -65,9 +64,9 @@ export default class WelcomeScreen extends React.Component {
   createCat (name, type, breed, gender, dob, weight, height, length, declawed, outdoor, fixed) {
     var dobFormatted = 'Y-m-d'
       .replace('Y', dob.getFullYear())
-      .replace('m', dob.getMonth()+1)
+      .replace('m', dob.getMonth() + 1)
       .replace('d', dob.getDate())
-    
+
     WellCatManager.newAnimal(name, type, breed, gender, dobFormatted, weight, height, length, declawed, outdoor, fixed)
       .then((result) => {
         if (result.code === 1) {
@@ -76,7 +75,6 @@ export default class WelcomeScreen extends React.Component {
           Alert.alert(`${I18n.t('unableNewCat')} ${result.content}.`)
         } else if (result.code === -1) {
           Alert.alert(`${I18n.t('tryLater')}`)
-          Alert.alert(JSON.stringify(result.content))
         } else {
           Alert.alert(`${I18n.t('horrible')}`)
         }
@@ -124,7 +122,7 @@ export default class WelcomeScreen extends React.Component {
               </Text>
               <DatePickerIOS
                 date={this.state.dob}
-                mode="date"
+                mode='date'
                 timeZoneOffsetInMinutes={this.state.timeZoneOffsetInMinutes}
                 onDateChange={(dob) => this.setState({dob})}
               />

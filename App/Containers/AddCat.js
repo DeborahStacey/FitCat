@@ -37,7 +37,7 @@ export default class AddCat extends React.Component {
 
   addCat (cat) {
     WellCatManager.addCat(cat)
-    NavigationActions.pop()
+    NavigationActions.dashboard()
   }
 
   renderSectionHeader (sectionData, sectionID) {
