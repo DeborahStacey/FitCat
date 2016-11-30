@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, DatePickerAndroid, DatePickerIOS, Platform, ScrollView, Switch, Text, TextInput, TouchableWithoutFeedback, UIExplorerBlock, View } from 'react-native'
+import { Alert, DatePickerAndroid, DatePickerIOS, Platform, ScrollView, Switch, Text, TextInput, TouchableHighlight, View } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { Colors } from '../Themes'
@@ -83,13 +83,15 @@ export default class NewCat extends React.Component {
 
   async showPicker () {
     try {
-      const {action, year, month, day} = await DatePickerAndroid.open('simple')
-
-      if (action !== DatePickerAndroid.dismissedAction) {
-        this.setState({dob: new Date(year, month, day)})
-      }
+      await DatePickerAndroid.open({date: /* this.state.dob */ new Date()}) // commented is undefined
+        .then(({action, year, month, day}) => {
+          if (action !== DatePickerAndroid.dismissedAction) {
+            this.setState({dob: new Date(year, month, day)})  // undefined, date is fine
+          }
+        })
     } catch (error) {
-      Alert.alert(`${I18n.t('tryLater')}`)
+      // Alert.alert(`${I18n.t('tryLater')}`)
+      console.log(error)
     }
   }
 
@@ -237,13 +239,11 @@ export default class NewCat extends React.Component {
             <Text style={styles.sectionText} >
               {I18n.t('dob')}
             </Text>
-            <UIExplorerBlock>
-              <TouchableWithoutFeedback onPress={this.showPicker}>
-                <Text>
-                  {this.state.dob}
-                </Text>
-              </TouchableWithoutFeedback>
-            </UIExplorerBlock>
+            <TouchableHighlight onPress={this.showPicker}>
+              <Text>
+                {`${this.state.dob}`}
+              </Text>
+            </TouchableHighlight>
             <Text style={styles.sectionText} >
               {I18n.t('weight')}
             </Text>
