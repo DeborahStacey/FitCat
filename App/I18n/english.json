@@ -26,6 +26,13 @@
   "cups": " cups",
   "cups_of_water": " cups of water",
   
+  "name_required": "Name (Required)",
+  "brand": "Brand",
+  "description": "Description",
+  "cups_food_prompt": "How many cups did your cat eat?",
+  "cups_water_propt": "How many cups did your cat drink?",
+  "no_food_recorded": "No food recorded",
+  "no_water_recorded": "No water consumption recorded",
 
   "welcomeLogIn": "Welcome to FitCat! Please log in with your WellCat account.",
   "welcomeSignUp": "Sign up for WellCat by providing the following information.",

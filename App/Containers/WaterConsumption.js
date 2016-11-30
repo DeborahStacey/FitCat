@@ -37,7 +37,7 @@ export default class WaterConsumption extends React.Component {
         <ScrollView style={styles.container}>
           <View style={styles.paddedContainer}>
             <Text style={styles.sectionText}>
-              How many cups did your cat drink?
+              {I18n.t('cups_water_propt')}
             </Text>
             <TextInput
               style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}

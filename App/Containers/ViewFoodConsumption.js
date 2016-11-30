@@ -48,7 +48,7 @@ export default class ViewFoodConsumption extends React.Component {
             {date}
           </Text>
           <Text style={styles.valueText}>
-            No food recorded.
+            {I18n.t('no_food_recorded')}
           </Text>
         </View>
       )

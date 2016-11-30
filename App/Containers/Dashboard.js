@@ -153,6 +153,14 @@ export default class Dashboard extends React.Component {
     })
   }
 
+  catIdExists () {
+    return this.state[StorageKeys.CAT_ID] !== null && this.state[StorageKeys.CAT_ID] !== ''
+  }
+
+  fitbitAccessTokenExists () {
+    return this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== null && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== ''
+  }
+
   componentWillMount () {
     this.checkLoggedInState()
   }
@@ -217,8 +225,7 @@ export default class Dashboard extends React.Component {
       )
     }
 
-    if ((this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== null && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== '') &&
-    (this.state[StorageKeys.CAT_ID] !== null && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== '')) {
+    if (this.fitbitAccessTokenExists() && this.catIdExists()) {
       return (
         <View style={styles.mainContainer}>
           <ScrollView style={styles.container}>
@@ -260,7 +267,7 @@ export default class Dashboard extends React.Component {
   }
 
   displayFitbitStep () {
-    if (this.state[StorageKeys.FITBIT_ACCESS_TOKEN] === null || this.state[StorageKeys.FITBIT_ACCESS_TOKEN] === '') {
+    if (this.fitbitAccessTokenExists()) {
       return (
         <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
           {I18n.t('connect_fitbit_account')}
@@ -270,7 +277,7 @@ export default class Dashboard extends React.Component {
   }
 
   displayAddCatStep () {
-    if (this.state[StorageKeys.CAT_ID] === null || this.state[StorageKeys.CAT_ID] === '') {
+    if (this.catIdExists()) {
       return (
         <RoundedButton onPress={NavigationActions.addCat}>
           {I18n.t('register_your_cat')}

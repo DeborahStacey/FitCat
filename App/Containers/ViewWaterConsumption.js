@@ -42,7 +42,7 @@ export default class ViewWaterConsumption extends React.Component {
             {date}
           </Text>
           <Text style={styles.valueText}>
-            No water consumption recorded.
+            {I18n.t('no_water_recorded')}
           </Text>
         </View>
       )

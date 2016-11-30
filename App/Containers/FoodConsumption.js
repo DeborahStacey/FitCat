@@ -62,7 +62,8 @@ export default class FoodConsumption extends React.Component {
     } else {
       var pickerItems = []
       for (var i = 0; i < foodTypes.length; i++) {
-        pickerItems.push(<Picker.Item key={i} label={foodTypes[i].brand + ' - ' + foodTypes[i].name} value={i} />)
+        var foodString = foodTypes[i].brand && foodTypes[i].brand.length > 0 ? foodTypes[i].brand + ' - ' + foodTypes[i].name : foodTypes[i].name
+        pickerItems.push(<Picker.Item key={i} label={foodString} value={i} />)
       }
       return (
         pickerItems
@@ -82,8 +83,9 @@ export default class FoodConsumption extends React.Component {
       return
     }
     var currentSelectedFood = !this.state.selectedFood.brand ? this.state.foodTypes[0] : this.state.selectedFood
+    var currentSelectedFoodDescription = currentSelectedFood.description.length === 0 ? ' ' : currentSelectedFood.description
     var currentPetId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
-    WellCatManager.submitFoodRecord(currentPetId, currentSelectedFood.brand, currentSelectedFood.name, currentSelectedFood.description, parseFloat(this.state.formCupsText))
+    WellCatManager.submitFoodRecord(currentPetId, currentSelectedFood.brand, currentSelectedFood.name, currentSelectedFoodDescription, parseFloat(this.state.formCupsText))
   }
 
   componentWillMount () {
@@ -110,7 +112,7 @@ export default class FoodConsumption extends React.Component {
             : <View style={styles.paddedContainer}>
               <TextInput
                 style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
-                placeholder='Name (Required)'
+                placeholder={I18n.t('name_required')}
                 onChangeText={(text) => this.setState({
                   formNameText: text
                 })}
@@ -118,7 +120,7 @@ export default class FoodConsumption extends React.Component {
               />
               <TextInput
                 style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
-                placeholder='Brand'
+                placeholder={I18n.t('brand')}
                 onChangeText={(text) => this.setState({
                   formBrandText: text
                 })}
@@ -126,7 +128,7 @@ export default class FoodConsumption extends React.Component {
               />
               <TextInput
                 style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
-                placeholder='Description'
+                placeholder={I18n.t('description')}
                 onChangeText={(text) => this.setState({
                   formDescText: text
                 })}
@@ -146,7 +148,7 @@ export default class FoodConsumption extends React.Component {
 
           <View style={styles.paddedContainer}>
             <Text style={styles.sectionText}>
-              How many cups did your cat eat?
+              {I18n.t('cups_food_prompt')}
             </Text>
             <TextInput
               style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
