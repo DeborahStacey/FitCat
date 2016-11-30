@@ -29,7 +29,7 @@ export default class GraphComponent extends Component {
     var i = 0
     var graphs = this.props.data.map((item) => {
       var value = parseFloat(item.value).toFixed(2)
-      var bigValue = parseFloat(item.value) * this.props.barMultiplier
+      var bigValue = Math.min(290, parseFloat(item.value) * this.props.barMultiplier)
       this.animValues[item.label] = Object.values(oldAnimValues)[i] || new Animated.Value(0)
       i = i + 1
       this.animations.push(this.createAnimation(this.animValues[item.label], bigValue, 1000, Easing.ease, 0))
