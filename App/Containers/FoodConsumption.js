@@ -57,7 +57,7 @@ export default class FoodConsumption extends React.Component {
     var foodTypes = this.state.foodTypes
     if (foodTypes === null || foodTypes.length === 0) {
       return (
-        <Picker.Item label='No saved food types' value={{}} />
+        <Picker.Item label={I18n.t('no_saved_food')} value={{}} />
       )
     } else {
       var pickerItems = []
