@@ -127,7 +127,7 @@ export default class Dashboard extends React.Component {
       .then((result) => {
         if (result.code === 1) {
           AsyncStorage.setItem(StorageKeys.WELLCAT_EMAIL, email)
-          NavigationActions.loggedInDash()
+          NavigationActions.loggedInDash({loggedIn: true})
         } else if (result.code === 0) {
           Alert.alert(`${I18n.t('unable')} ${result.content}.`)
         } else if (result.code === -1) {
@@ -166,16 +166,42 @@ export default class Dashboard extends React.Component {
     })
   }
 
+  async updateFitbitAccesToken () {
+    let accessToken = await AsyncStorage.getItem(StorageKeys.FITBIT_ACCESS_TOKEN)
+    this.setState({
+      'fitbit_access_token': accessToken
+    })
+  }
+
   catIdExists () {
-    return this.state[StorageKeys.CAT_ID] !== null && this.state[StorageKeys.CAT_ID] !== ''
+    return this.state[StorageKeys.CAT_ID] !== undefined && this.state[StorageKeys.CAT_ID] !== null && this.state[StorageKeys.CAT_ID] !== ''
   }
 
   fitbitAccessTokenExists () {
-    return this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== null && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== ''
+    return this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== undefined && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== null && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== ''
   }
 
   componentWillMount () {
     this.checkLoggedInState()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.dothething) {
+      this.getWellCatData()
+      nextProps.dothething = false
+    }
+
+    if (nextProps.fitbitupdate) {
+      this.updateFitbitAccesToken()
+      this.fetchDeviceData()
+      this.fetchDayOfSummaryData()
+      nextProps.fitbitupdate = false
+    }
+
+    if (nextProps.loggedIn) {
+      this.checkLoggedInState()
+      nextProps.loggedIn = false
+    }
   }
 
   render () {
