@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, DatePickerIOS, Platform, ScrollView, Switch, Text, TextInput, View } from 'react-native'
+import { Alert, DatePickerAndroid, DatePickerIOS, Platform, ScrollView, Switch, Text, TextInput, TouchableWithoutFeedback, UIExplorerBlock, View } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import { Colors } from '../Themes'
@@ -79,6 +79,18 @@ export default class WelcomeScreen extends React.Component {
           Alert.alert(`${I18n.t('horrible')}`)
         }
       })
+  }
+
+  async showPicker () {
+    try {
+      const {action, year, month, day} = await DatePickerAndroid.open('simple')
+
+      if (action !== DatePickerAndroid.dismissedAction) {
+        this.setState({dob: new Date(year, month, day)})
+      }
+    } catch (error) {
+      Alert.alert(`${I18n.t('tryLater')}`)
+    }
   }
 
   render () {
@@ -225,13 +237,13 @@ export default class WelcomeScreen extends React.Component {
             <Text style={styles.sectionText} >
               {I18n.t('dob')}
             </Text>
-            <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10}}
-              placeholder={I18n.t('dob')}
-              placeholderTextColor={Colors.placeholderText}
-              onChangeText={(dob) => this.setState({dob})}
-              autoCapitalize={'none'}
-            />
+            <UIExplorerBlock>
+              <TouchableWithoutFeedback onPress={this.showPicker}>
+                <Text>
+                  {this.state.dob}
+                </Text>
+              </TouchableWithoutFeedback>
+            </UIExplorerBlock>
             <Text style={styles.sectionText} >
               {I18n.t('weight')}
             </Text>
