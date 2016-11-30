@@ -39,11 +39,11 @@ class NavigationRouter extends Component {
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
             <Scene key='catSleep' component={CatSleep} title={I18n.t('cat_sleep')} />
             <Scene key='device' component={Device} title={I18n.t('device')} />
-            <Scene key='catWeight' component={CatWeight} title={I18n.t('cat_weight')} />
+            <Scene key='catWeight' component={CatWeight} title={I18n.t('cat_weight')} onBack={NavItems.returnToDashboardAndUpdateHack} />
             <Scene key='addCat' component={AddCat} title={I18n.t('register_your_cat')} />
-            <Scene key='foodConsumption' component={FoodConsumption} title={I18n.t('food_consumption')} />
+            <Scene key='foodConsumption' component={FoodConsumption} title={I18n.t('food_consumption')} onBack={NavItems.returnToDashboardAndUpdateHack} />
             <Scene key='viewFoodConsumption' component={ViewFoodConsumption} onBack={NavItems.viewFoodConsumptionBackButtonHack} title={I18n.t('view_food_consumption')} />
-            <Scene key='waterConsumption' component={WaterConsumption} title={I18n.t('water_consumption')} />
+            <Scene key='waterConsumption' component={WaterConsumption} title={I18n.t('water_consumption')} onBack={NavItems.returnToDashboardAndUpdateHack} />
             <Scene key='viewWaterConsumption' component={ViewWaterConsumption} onBack={NavItems.viewWaterConsumptionBackButtonHack} title={I18n.t('view_water_consumption')} />
           </Scene>
         </Scene>
