@@ -71,20 +71,6 @@ module.exports = {
   newAnimal: (name, type, breed, gender, dob, weight, height, length, declawed, outdoor, fixed) => {
     let wellcatNewAnimalUrl = `${AppConfig.WELLCAT_BASE}/pet/create`
 
-    Alert.alert(JSON.stringify({
-        name: `${name}`,
-        animalTypeID: type,
-        breed: breed,
-        gender: gender,
-        dateOfBirth: `${dob}`,
-        weight: `${weight}`,
-        height: `${height}`,
-        length: `${length}`,
-        declawed: `${declawed}`,
-        outdoor: `${outdoor}`,
-        fixed: `${fixed}`
-      }))
-
     return fetch(wellcatNewAnimalUrl, {
       method: 'POST',
       headers: {
