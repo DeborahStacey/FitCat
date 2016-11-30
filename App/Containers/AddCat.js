@@ -69,7 +69,7 @@ export default class AddCat extends React.Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.scrollableContainer}>
           {
             this.state.loaded &&
             <ListView dataSource={this.state.catsList}

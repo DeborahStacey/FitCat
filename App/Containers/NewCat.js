@@ -10,7 +10,7 @@ import { default as WellCatManager } from '../Services/WellCatManager'
 // Styles
 import styles from './Styles/NewCatStyle'
 
-export default class WelcomeScreen extends React.Component {
+export default class NewCat extends React.Component {
   constructor () {
     super()
     this.state = {
