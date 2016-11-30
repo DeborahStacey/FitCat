@@ -1,4 +1,4 @@
-import { AsyncStorage, Alert } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import I18n from 'react-native-i18n'
 import { default as AppConfig } from '../Config/AppConfig'
 import { default as StorageKeys } from '../Config/StorageKeys'
@@ -28,7 +28,6 @@ module.exports = {
       var message = bodyObj.error
       return { code: 0, content: message }
     }).catch((error) => {
-      Alert.alert(error)
       return { code: -1, content: error }
     })
   },
