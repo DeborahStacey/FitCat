@@ -61,7 +61,7 @@ export default class Dashboard extends React.Component {
         waterSync = wellcatInfo.fitcat[0].waterconsumption ? wellcatInfo.fitcat[0].waterconsumption : 0.0
       }
     } catch (error) {
-      console.error(error)
+      console.log(error)
     }
     this.setState({
       weight: wellcatInfo.pet.weight,
@@ -173,6 +173,15 @@ export default class Dashboard extends React.Component {
     })
   }
 
+  async updateActiveCat () {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    let catName = await AsyncStorage.getItem(StorageKeys.CAT_NAME)
+    this.setState({
+      'cat_id': catId,
+      catName: catName
+    })
+  }
+
   catIdExists () {
     return this.state[StorageKeys.CAT_ID] !== undefined && this.state[StorageKeys.CAT_ID] !== null && this.state[StorageKeys.CAT_ID] !== ''
   }
@@ -201,6 +210,12 @@ export default class Dashboard extends React.Component {
     if (nextProps.loggedIn) {
       this.checkLoggedInState()
       nextProps.loggedIn = false
+    }
+
+    if (nextProps.catupdate) {
+      this.updateActiveCat()
+      this.getWellCatData()
+      nextProps.catupdate = false
     }
   }
 
@@ -281,11 +296,11 @@ export default class Dashboard extends React.Component {
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='balance-scale' stat={this.state.weight.toString()} unit='lbs' onPress={NavigationActions.catWeight} />
               <View style={styles.dashboardStatDivider} />
-              <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
-              <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='spoon' stat={this.state.foodSync.toString()} unit='cups today' onPress={NavigationActions.foodConsumption} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='tint' stat={this.state.waterSync.toString()} unit='cups today' onPress={NavigationActions.waterConsumption} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
               <View style={styles.dashboardStatDivider} />
             </View>
           </ScrollView>
