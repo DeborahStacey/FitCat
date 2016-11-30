@@ -114,6 +114,7 @@ export default class FoodConsumption extends React.Component {
                 onChangeText={(text) => this.setState({
                   formNameText: text
                 })}
+                value={this.state.formNameText}
               />
               <TextInput
                 style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
@@ -121,6 +122,7 @@ export default class FoodConsumption extends React.Component {
                 onChangeText={(text) => this.setState({
                   formBrandText: text
                 })}
+                value={this.state.formBrandText}
               />
               <TextInput
                 style={{height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, marginBottom: 15}}
@@ -128,8 +130,9 @@ export default class FoodConsumption extends React.Component {
                 onChangeText={(text) => this.setState({
                   formDescText: text
                 })}
+                value={this.state.formDescText}
               />
-              <RoundedButton onPress={this.saveFoodTypes()}>
+              <RoundedButton onPress={this.saveFoodTypes}>
                 {I18n.t('save_food_type')}
               </RoundedButton>
             </View>
