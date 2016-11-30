@@ -11,6 +11,10 @@ import AddCat from '../Containers/AddCat'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
 import Device from '../Containers/Device'
+import FoodConsumption from '../Containers/FoodConsumption'
+import ViewFoodConsumption from '../Containers/ViewFoodConsumption'
+import WaterConsumption from '../Containers/WaterConsumption'
+import ViewWaterConsumption from '../Containers/ViewWaterConsumption'
 import NavItems from './NavItems'
 import CatWeight from '../Containers/CatWeight'
 
@@ -35,6 +39,10 @@ class NavigationRouter extends Component {
             <Scene key='device' component={Device} title={I18n.t('device')} />
             <Scene key='catWeight' component={CatWeight} title={I18n.t('cat_weight')} />
             <Scene key='addCat' component={AddCat} title={I18n.t('register_your_cat')} />
+            <Scene key='foodConsumption' component={FoodConsumption} title={I18n.t('food_consumption')} />
+            <Scene key='viewFoodConsumption' component={ViewFoodConsumption} onBack={NavItems.viewFoodConsumptionBackButtonHack} title={I18n.t('view_food_consumption')} />
+            <Scene key='waterConsumption' component={WaterConsumption} title={I18n.t('water_consumption')} />
+            <Scene key='viewWaterConsumption' component={ViewWaterConsumption} onBack={NavItems.viewWaterConsumptionBackButtonHack} title={I18n.t('view_water_consumption')} />
           </Scene>
         </Scene>
       </Router>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import styles from './Styles/NavItemsStyle'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { ActionConst, Actions as NavigationActions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Colors, Metrics } from '../Themes'
 
@@ -35,5 +35,13 @@ export default {
         />
       </TouchableOpacity>
     )
+  },
+
+  viewFoodConsumptionBackButtonHack () {
+    NavigationActions.foodConsumption({type: ActionConst.POP_AND_REPLACE})
+  },
+
+  viewWaterConsumptionBackButtonHack () {
+    NavigationActions.waterConsumption({type: ActionConst.POP_AND_REPLACE})
   }
 }

@@ -1,8 +1,8 @@
 import { AsyncStorage } from 'react-native'
 import I18n from 'react-native-i18n'
 import { default as AppConfig } from '../Config/AppConfig'
-import Moment from 'moment'
 import { default as StorageKeys } from '../Config/StorageKeys'
+import Moment from 'moment'
 
 module.exports = {
 
@@ -137,9 +137,7 @@ module.exports = {
         'date': Moment().format('YYYY[-]MM[-]DD')
       })
     }).then((response) => {
-      console.log(response)
       if (response.ok) {
-        console.log(response)
         return
       }
     }).catch((error) => {
@@ -173,6 +171,118 @@ module.exports = {
       }
     }).catch((error) => {
       console.error(error)
+    })
+  },
+
+  submitFoodRecord: async (petId, foodBrand, foodName, foodDescription, foodAmount) => {
+    let wellcatUrl = `${AppConfig.WELLCAT_BASE}/fitcat/food`
+
+    return fetch(wellcatUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        petID: petId,
+        brand: foodBrand,
+        name: foodName,
+        description: foodDescription,
+        amount: foodAmount,
+        date: Moment().format('YYYY-MM-DD')
+      })
+    }).then((response) => {
+      if (!response.ok) {
+        console.error(response)
+      }
+      return
+    }).catch((error) => {
+      console.error(error)
+    })
+  },
+
+  getFoodConsumptionHistory: async () => {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    let wellcatGetPetsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/view/${catId}`
+
+    return fetch(wellcatGetPetsUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      if (response.ok) {
+        var json = JSON.parse(response._bodyText)
+        var fitCatArray = json.fitcat
+        var foodConsumption = []
+        for (var i = 0; i < fitCatArray.length; i++) {
+          foodConsumption.push(
+            {
+              date: fitCatArray[i].date,
+              foodBrand: fitCatArray[i].foodbrand,
+              foodDescription: fitCatArray[i].description,
+              foodName: fitCatArray[i].name,
+              foodConsumption: fitCatArray[i].foodconsumption
+            }
+          )
+        }
+        return foodConsumption
+      }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
+  },
+
+  submitWaterRecord: async (petId, waterAmount) => {
+    let wellcatUrl = `${AppConfig.WELLCAT_BASE}/fitcat/water`
+
+    return fetch(wellcatUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        petID: petId,
+        amount: waterAmount,
+        date: Moment().format('YYYY-MM-DD')
+      })
+    }).then((response) => {
+      if (!response.ok) {
+        console.error(response)
+      }
+      return
+    }).catch((error) => {
+      console.error(error)
+    })
+  },
+
+  getWaterConsumptionHistory: async () => {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    let wellcatGetPetsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/view/${catId}`
+
+    return fetch(wellcatGetPetsUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      if (response.ok) {
+        var json = JSON.parse(response._bodyText)
+        var fitCatArray = json.fitcat
+        var waterConsumption = []
+        for (var i = 0; i < fitCatArray.length; i++) {
+          waterConsumption.push(
+            {
+              date: fitCatArray[i].date,
+              waterConsumption: fitCatArray[i].waterconsumption
+            }
+          )
+        }
+        return waterConsumption
+      }
+    }).catch((error) => {
+      return { code: -1, content: error }
     })
   }
 }
