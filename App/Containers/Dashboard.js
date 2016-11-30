@@ -22,6 +22,7 @@ export default class Dashboard extends React.Component {
     this.state = {
       steps: '',
       distance: '',
+      sleep: '',
       deviceBattery: '',
       email: '',
       password: '',
@@ -93,6 +94,18 @@ export default class Dashboard extends React.Component {
       this.setState({
         steps: responseJson.summary.steps,
         distance: responseJson.summary.distances[0].distance
+      })
+    })
+
+    fetch(`https://api.fitbit.com/1/user/-/sleep/date/${date}.json`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      }
+    }).then((response) => response.json()).then((responseJson) => {
+      this.setState({
+        sleep: responseJson.summary.totalMinutesAsleep
       })
     })
   }
@@ -237,6 +250,8 @@ export default class Dashboard extends React.Component {
               <DashboardStat icon='paw' stat={this.state.steps.toString()} unit='steps' onPress={NavigationActions.catSteps} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='map-marker' stat={this.state.distance.toString()} unit='km' onPress={NavigationActions.catDistance} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon='moon-o' stat={this.state.sleep.toString()} unit='cat nap minutes' onPress={NavigationActions.catSleep} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='balance-scale' stat={this.state.weight.toString()} unit='lbs' onPress={NavigationActions.catWeight} />
               <View style={styles.dashboardStatDivider} />

@@ -10,6 +10,7 @@ import Dashboard from '../Containers/Dashboard'
 import AddCat from '../Containers/AddCat'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
+import CatSleep from '../Containers/CatSleep'
 import Device from '../Containers/Device'
 import FoodConsumption from '../Containers/FoodConsumption'
 import ViewFoodConsumption from '../Containers/ViewFoodConsumption'
@@ -36,6 +37,7 @@ class NavigationRouter extends Component {
             <Scene key='signUp' component={SignUpScreen} title={I18n.t('fitcat')} />
             <Scene key='catDistance' component={CatDistance} title={I18n.t('cat_distance')} />
             <Scene key='catSteps' component={CatSteps} title={I18n.t('cat_steps')} />
+            <Scene key='catSleep' component={CatSleep} title={I18n.t('cat_sleep')} />
             <Scene key='device' component={Device} title={I18n.t('device')} />
             <Scene key='catWeight' component={CatWeight} title={I18n.t('cat_weight')} />
             <Scene key='addCat' component={AddCat} title={I18n.t('register_your_cat')} />
