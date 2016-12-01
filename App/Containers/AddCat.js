@@ -1,7 +1,9 @@
 import React from 'react'
 import { ListView, View, ScrollView, Text, TouchableHighlight } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import I18n from 'react-native-i18n'
 import { Colors } from '../Themes/'
+import RoundedButton from '../Components/RoundedButton'
 
 import { default as WellCatManager } from '../Services/WellCatManager'
 
@@ -68,7 +70,7 @@ export default class AddCat extends React.Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.scrollableContainer}>
           {
             this.state.loaded &&
             <ListView dataSource={this.state.catsList}
@@ -78,6 +80,11 @@ export default class AddCat extends React.Component {
               style={styles.listView} />
           }
         </ScrollView>
+        <View style={styles.paddedContainer}>
+          <RoundedButton onPress={NavigationActions.newCat}>
+            {I18n.t('new_cat')}
+          </RoundedButton>
+        </View>
       </View>
     )
   }

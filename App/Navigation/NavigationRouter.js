@@ -8,6 +8,7 @@ import NavigationDrawer from './NavigationDrawer'
 import SignUpScreen from '../Containers/SignUpScreen'
 import Dashboard from '../Containers/Dashboard'
 import AddCat from '../Containers/AddCat'
+import NewCat from '../Containers/NewCat'
 import CatDistance from '../Containers/CatDistance'
 import CatSteps from '../Containers/CatSteps'
 import CatSleep from '../Containers/CatSleep'
@@ -45,6 +46,7 @@ class NavigationRouter extends Component {
             <Scene key='viewFoodConsumption' component={ViewFoodConsumption} onBack={NavItems.viewFoodConsumptionBackButtonHack} title={I18n.t('view_food_consumption')} />
             <Scene key='waterConsumption' component={WaterConsumption} title={I18n.t('water_consumption')} onBack={NavItems.returnToDashboardAndUpdateHack} />
             <Scene key='viewWaterConsumption' component={ViewWaterConsumption} onBack={NavItems.viewWaterConsumptionBackButtonHack} title={I18n.t('view_water_consumption')} />
+            <Scene key='newCat' component={NewCat} title={I18n.t('new_cat')} />
           </Scene>
         </Scene>
       </Router>

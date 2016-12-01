@@ -67,6 +67,41 @@ module.exports = {
     })
   },
 
+  newAnimal: (name, type, breed, gender, dob, weight, height, length, declawed, outdoor, fixed) => {
+    let wellcatNewAnimalUrl = `${AppConfig.WELLCAT_BASE}/pet/create`
+
+    return fetch(wellcatNewAnimalUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: `${name}`,
+        animalTypeID: type,
+        breed: breed,
+        gender: gender,
+        dateOfBirth: `${dob}`,
+        weight: `${weight}`,
+        height: `${height}`,
+        length: `${length}`,
+        declawed: `${declawed}`,
+        outdoor: `${outdoor}`,
+        fixed: `${fixed}`
+      })
+    }).then((response) => {
+      if (response.ok) {
+        return { code: 1, content: '' }
+      }
+      var body = response._bodyText
+      var bodyObj = JSON.parse(body)
+      var message = bodyObj.error
+      return { code: 0, content: message }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
+  },
+
   getCountries: () => {
     let wellcatCountriesUrl = `${AppConfig.WELLCAT_BASE}/address/countries`
 
@@ -77,6 +112,40 @@ module.exports = {
       var bodyObj = JSON.parse(body)
       if (response.ok) {
         return { code: 1, content: bodyObj.countries }
+      }
+      return { code: 0, content: bodyObj.error }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
+  },
+
+  getCatBreeds: () => {
+    let wellcatCatBreedsUrl = `${AppConfig.WELLCAT_BASE}/animal/1/breeds`
+
+    return fetch(wellcatCatBreedsUrl, {
+      method: 'GET'
+    }).then((response) => {
+      var body = response._bodyText
+      var bodyObj = JSON.parse(body)
+      if (response.ok) {
+        return { code: 1, content: bodyObj.breeds }
+      }
+      return { code: 0, content: bodyObj.error }
+    }).catch((error) => {
+      return { code: -1, content: error }
+    })
+  },
+
+  getAnimalGenders: () => {
+    let wellcatAnimalGendersUrl = `${AppConfig.WELLCAT_BASE}/animal/genders`
+
+    return fetch(wellcatAnimalGendersUrl, {
+      method: 'GET'
+    }).then((response) => {
+      var body = response._bodyText
+      var bodyObj = JSON.parse(body)
+      if (response.ok) {
+        return { code: 1, content: bodyObj.genders }
       }
       return { code: 0, content: bodyObj.error }
     }).catch((error) => {

@@ -28,6 +28,11 @@ const ApplicationStyles = {
       paddingTop: Metrics.baseMargin,
       paddingBottom: 50
     },
+    scrollableContainer: {
+      flex: 1,
+      height: 0.75 * Metrics.screenHeight,
+      paddingTop: Metrics.baseMargin
+    },
     section: {
       margin: Metrics.section,
       padding: Metrics.baseMargin,
