@@ -43,5 +43,9 @@ export default {
 
   viewWaterConsumptionBackButtonHack () {
     NavigationActions.waterConsumption({type: ActionConst.POP_AND_REPLACE})
+  },
+
+  returnToDashboardAndUpdateHack () {
+    NavigationActions.dashboard({dothething: true})
   }
 }

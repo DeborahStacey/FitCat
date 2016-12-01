@@ -50,7 +50,7 @@ export default class Dashboard extends React.Component {
     let wellcatInfo = await WellCatManager.getActiveCat()
     var foodSync = 0.0
     var waterSync = 0.0
-    if (wellcatInfo === undefined) {
+    if (wellcatInfo === undefined || wellcatInfo.fitcat === undefined) {
       return
     }
     try {
@@ -61,7 +61,7 @@ export default class Dashboard extends React.Component {
         waterSync = wellcatInfo.fitcat[0].waterconsumption ? wellcatInfo.fitcat[0].waterconsumption : 0.0
       }
     } catch (error) {
-      console.error(error)
+      console.log(error)
     }
     this.setState({
       weight: wellcatInfo.pet.weight,
@@ -127,7 +127,7 @@ export default class Dashboard extends React.Component {
       .then((result) => {
         if (result.code === 1) {
           AsyncStorage.setItem(StorageKeys.WELLCAT_EMAIL, email)
-          NavigationActions.loggedInDash()
+          NavigationActions.loggedInDash({loggedIn: true})
         } else if (result.code === 0) {
           Alert.alert(`${I18n.t('unable')} ${result.content}.`)
         } else if (result.code === -1) {
@@ -166,16 +166,57 @@ export default class Dashboard extends React.Component {
     })
   }
 
+  async updateFitbitAccesToken () {
+    let accessToken = await AsyncStorage.getItem(StorageKeys.FITBIT_ACCESS_TOKEN)
+    this.setState({
+      'fitbit_access_token': accessToken
+    })
+  }
+
+  async updateActiveCat () {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    let catName = await AsyncStorage.getItem(StorageKeys.CAT_NAME)
+    this.setState({
+      'cat_id': catId,
+      catName: catName
+    })
+  }
+
   catIdExists () {
-    return this.state[StorageKeys.CAT_ID] !== null && this.state[StorageKeys.CAT_ID] !== ''
+    return this.state[StorageKeys.CAT_ID] !== undefined && this.state[StorageKeys.CAT_ID] !== null && this.state[StorageKeys.CAT_ID] !== ''
   }
 
   fitbitAccessTokenExists () {
-    return this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== null && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== ''
+    return this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== undefined && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== null && this.state[StorageKeys.FITBIT_ACCESS_TOKEN] !== ''
   }
 
   componentWillMount () {
     this.checkLoggedInState()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.dothething) {
+      this.getWellCatData()
+      nextProps.dothething = false
+    }
+
+    if (nextProps.fitbitupdate) {
+      this.updateFitbitAccesToken()
+      this.fetchDeviceData()
+      this.fetchDayOfSummaryData()
+      nextProps.fitbitupdate = false
+    }
+
+    if (nextProps.loggedIn) {
+      this.checkLoggedInState()
+      nextProps.loggedIn = false
+    }
+
+    if (nextProps.catupdate) {
+      this.updateActiveCat()
+      this.getWellCatData()
+      nextProps.catupdate = false
+    }
   }
 
   render () {
@@ -255,11 +296,11 @@ export default class Dashboard extends React.Component {
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='balance-scale' stat={this.state.weight.toString()} unit='lbs' onPress={NavigationActions.catWeight} />
               <View style={styles.dashboardStatDivider} />
-              <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
-              <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='spoon' stat={this.state.foodSync.toString()} unit='cups today' onPress={NavigationActions.foodConsumption} />
               <View style={styles.dashboardStatDivider} />
               <DashboardStat icon='tint' stat={this.state.waterSync.toString()} unit='cups today' onPress={NavigationActions.waterConsumption} />
+              <View style={styles.dashboardStatDivider} />
+              <DashboardStat icon={batteryIcon} stat={this.state.deviceBattery} unit='battery' onPress={NavigationActions.device} />
               <View style={styles.dashboardStatDivider} />
             </View>
           </ScrollView>
@@ -282,7 +323,7 @@ export default class Dashboard extends React.Component {
   }
 
   displayFitbitStep () {
-    if (this.fitbitAccessTokenExists()) {
+    if (!this.fitbitAccessTokenExists()) {
       return (
         <RoundedButton onPress={OAuthManager.authorizeFitbitAccount}>
           {I18n.t('connect_fitbit_account')}
@@ -292,7 +333,7 @@ export default class Dashboard extends React.Component {
   }
 
   displayAddCatStep () {
-    if (this.catIdExists()) {
+    if (!this.catIdExists()) {
       return (
         <RoundedButton onPress={NavigationActions.addCat}>
           {I18n.t('register_your_cat')}

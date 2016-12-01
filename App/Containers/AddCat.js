@@ -36,8 +36,9 @@ export default class AddCat extends React.Component {
   }
 
   addCat (cat) {
-    WellCatManager.addCat(cat)
-    NavigationActions.dashboard()
+    WellCatManager.addCat(cat).then(() => {
+      NavigationActions.dashboard({catupdate: true})
+    })
   }
 
   renderSectionHeader (sectionData, sectionID) {
