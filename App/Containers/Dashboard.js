@@ -247,6 +247,7 @@ export default class Dashboard extends React.Component {
                   style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                   placeholder={I18n.t('email')}
                   placeholderTextColor={Colors.placeholderText}
+                  keyboardType={'email-address'}
                   onChangeText={(email) => this.setState({email})}
                   autoCapitalize={'none'}
                 />
