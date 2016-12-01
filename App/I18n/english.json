@@ -71,6 +71,8 @@
    "declawed": "Declawed",
    "outdoor": "Outdoor",
    "fixed": "Fixed",
+   "confirm": "Confirm",
+   "cancel": "Cancel",
 
    "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
    "progressiveImageComponent": "Progressive Image Component",
