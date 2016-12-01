@@ -3,6 +3,7 @@ import { Alert, ScrollView, Switch, Text, TextInput, View } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import DatePicker from 'react-native-datepicker'
+import Moment from 'moment'
 import { Colors } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
 import Dropdown from '../Components/Dropdown'
@@ -19,10 +20,7 @@ export default class NewCat extends React.Component {
       type: 1,
       breed: -1,
       gender: -1,
-      dob: 'Y-m-d'
-      .replace('Y', new Date().getFullYear())
-      .replace('m', new Date().getMonth() + 1)
-      .replace('d', new Date().getDate()),
+      dob: new Moment().format('YYYY-MM-DD'),
       weight: '',
       height: '',
       length: '',
@@ -134,6 +132,7 @@ export default class NewCat extends React.Component {
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(weight) => this.setState({weight})}
               autoCapitalize={'none'}
+              keyboardType='numeric'
             />
             <Text style={styles.sectionText} >
               {I18n.t('height')}
@@ -144,6 +143,7 @@ export default class NewCat extends React.Component {
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(height) => this.setState({height})}
               autoCapitalize={'none'}
+              keyboardType='numeric'
             />
             <Text style={styles.sectionText} >
               {I18n.t('length')}
@@ -154,6 +154,7 @@ export default class NewCat extends React.Component {
               placeholderTextColor={Colors.placeholderText}
               onChangeText={(length) => this.setState({length})}
               autoCapitalize={'none'}
+              keyboardType='numeric'
             />
             <Text style={styles.sectionText} >
               {I18n.t('declawed')}
