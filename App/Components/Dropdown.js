@@ -20,7 +20,7 @@ export default class Dropdown extends React.Component {
       items.push(<Picker.Item label={I18n.t('selectOne')} value={-1} key={'first'} />)
 
       for (var i = 0; i < options.length; i++) {
-        items.push(<Picker.Item label={options[i].name} value={options[i].value} key={i} />)
+        items.push(<Picker.Item label={options[i].name} value={options[i].id} key={i} />)
       }
 
       this.setState({
