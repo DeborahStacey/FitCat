@@ -4,6 +4,7 @@ import RootContainer from './RootContainer'
 import DebugSettings from '../Config/DebugSettings'
 import SafariView from 'react-native-safari-view'
 import { default as OAuthManager } from '../Services/OAuthManager'
+import { default as Helpers } from '../Services/Helpers'
 import '../I18n/I18n'
 
 if (__DEV__) {
@@ -25,7 +26,7 @@ class App extends Component {
     } else {
       // TODO: Handle promise rejection where url = null (i.e. launching the app normally)
       Linking.getInitialURL().then(url => {
-        if (this.parseDeepLinkRoute(url) === 'oauth-callback') {
+        if (Helpers.parseDeepLinkRoute(url) === 'oauth-callback') {
           OAuthManager.parseFitbitAuthResponse(url)
         }
       })
@@ -38,23 +39,13 @@ class App extends Component {
 
   handleDeepLinkIOS (e) {
     // TODO: Handle promise rejection where e.url = null (i.e. launching the app normally)
-    if (this.parseDeepLinkRoute(e.url) === 'oauth-callback') {
+    if (Helpers.parseDeepLinkRoute(e.url) === 'oauth-callback') {
       if (SafariView.isAvailable()) {
         SafariView.dismiss()
       }
 
       OAuthManager.parseFitbitAuthResponse(e.url)
     }
-  }
-
-  /**
-   * Strips out the scheme from the url returned with from a deep link
-   * and returns the identifier before the first hash.
-   *
-   * Example: "fitcat://oauth-callback#access-token..." => "oauth-callback"
-   */
-  parseDeepLinkRoute (url) {
-    return url.replace(/.*?:\/\//g, '').split('#')[0]
   }
 
   render () {

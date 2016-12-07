@@ -1,10 +1,8 @@
-import { AsyncStorage, Platform, Linking } from 'react-native'
+import { AsyncStorage, Platform } from 'react-native'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import SafariView from 'react-native-safari-view'
-import { CustomTabs, ANIMATIONS_SLIDE } from 'react-native-custom-tabs'
-import { Colors } from '../Themes/'
 import { default as AppConfig } from '../Config/AppConfig'
 import { default as StorageKeys } from '../Config/StorageKeys'
+import { default as Helpers } from './Helpers'
 
 import { parse as qsparse } from 'querystringify'
 
@@ -24,11 +22,11 @@ module.exports = {
       `&state=${AppConfig.FITBIT_STATE}`
 
     if (Platform.OS === 'ios') {
-      module.exports.openLinkSafariView(fitbitAuthUrl)
+      Helpers.openLinkSafariView(fitbitAuthUrl)
     } else if (Platform.OS === 'android') {
-      module.exports.openLinkChromeTabs(fitbitAuthUrl)
+      Helpers.openLinkChromeTabs(fitbitAuthUrl)
     } else {
-      module.exports.openLinkExternally(fitbitAuthUrl)
+      Helpers.openLinkExternally(fitbitAuthUrl)
     }
   },
 
@@ -52,44 +50,6 @@ module.exports = {
     } catch (error) {
       console.error('Error saving to AsyncStorage', error)
     }
-  },
-
-  // TODO: Move these functions elsewhere to be more reusable.
-
-  /**
-   * Open a link using Chrome Custom Tabs.
-   */
-  openLinkChromeTabs: (url) => {
-    CustomTabs.openURL(
-      url,
-      {
-        toolbarColor: Colors.navigation,
-        showPageTitle: true,
-        animations: ANIMATIONS_SLIDE
-      }
-    ).catch(error => {
-      console.error(error)
-      module.exports.openLinkExternally(url)
-    })
-  },
-
-  /**
-   * Open a link using SFSafariViewController.
-   */
-  openLinkSafariView: (url) => {
-    SafariView.show({
-      url: url
-    }).catch(error => {
-      console.error(error)
-      module.exports.openLinkExternally(url)
-    })
-  },
-
-  /**
-   * Open a link in an external browser.
-   */
-  openLinkExternally: (url) => {
-    Linking.openURL(url).catch(err => console.err('An error occurred', err))
   }
 
 }
