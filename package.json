@@ -98,6 +98,7 @@
       "describe",
       "it",
       "fetch",
+      "jest",
       "expect",
       "navigator",
       "__DEV__",

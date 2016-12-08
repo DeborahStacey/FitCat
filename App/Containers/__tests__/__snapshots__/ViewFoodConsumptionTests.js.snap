@@ -1,0 +1,25 @@
+exports[`test renders the view food consumption page correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F5FF",
+      "flex": 1,
+      "marginTop": 64,
+    }
+  }>
+  <ScrollView
+    style={
+      Object {
+        "flex": 1,
+        "paddingTop": 10,
+      }
+    }>
+    <View
+      style={
+        Object {
+          "padding": 25,
+        }
+      } />
+  </ScrollView>
+</View>
+`;
