@@ -1,3 +1,4 @@
+/* eslint-disable no-global-assign, no-native-reassign */
 import React, { Component } from 'react'
 import NewCat from '../NewCat'
 
