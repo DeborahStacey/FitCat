@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, View, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import Moment from 'moment'
 import { default as DeviceInfo } from '../Services/DeviceInfo'
 import { default as MomentWrapper } from '../Services/MomentWrapper'
 

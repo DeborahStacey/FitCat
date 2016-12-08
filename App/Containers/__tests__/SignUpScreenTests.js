@@ -5,13 +5,13 @@ import SignUpScreen from '../SignUpScreen'
 import renderer from 'react-test-renderer'
 
 jest.mock('Picker', () => {
-  const React = require('React');
+  const React = require('React')
   return class MockPicker extends Component {
-    static Item = props => React.createElement('Item', props, props.children);
-    static propTypes = { children: React.PropTypes.any };
+    static Item = props => React.createElement('Item', props, props.children)
+    static propTypes = { children: React.PropTypes.any }
 
-    render() {
-      return React.createElement('Picker', this.props, this.props.children);
+    render () {
+      return React.createElement('Picker', this.props, this.props.children)
     }
   }
 })
