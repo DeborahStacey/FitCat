@@ -1,0 +1,134 @@
+exports[`test renders the cat weight page correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F5FF",
+      "flex": 1,
+      "marginTop": 64,
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 20,
+        "paddingTop": 20,
+        "textAlign": "center",
+      }
+    }>
+    [missing \"en.current_weight\" translation]
+     
+    0
+     lbs
+  </Text>
+  <View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "marginHorizontal": 25,
+        }
+      }>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }>
+        <TextInput
+          autoCapitalize="none"
+          keyboardType="numeric"
+          maxLength={6}
+          onChangeText={[Function]}
+          placeholder="[missing \"en.update_weight_placeholder\" translation]"
+          placeholderTextColor="#787A7F"
+          style={
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "gray",
+              "borderWidth": 1,
+              "height": 40,
+              "marginVertical": 10,
+              "minWidth": 120,
+              "paddingLeft": 10,
+            }
+          } />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }>
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hitSlop={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#466ECC",
+              "borderRadius": 5,
+              "height": 45,
+              "justifyContent": "center",
+              "marginHorizontal": 25,
+              "marginVertical": 10,
+              "opacity": 1,
+            }
+          }
+          testID={undefined}>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 14,
+                "fontWeight": "bold",
+                "marginHorizontal": 5,
+                "marginVertical": 10,
+                "textAlign": "center",
+              }
+            }>
+            [MISSING \"EN.UPDATE_WEIGHT\" TRANSLATION]
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#D8D8D8",
+        "borderBottomWidth": 1,
+        "borderTopColor": "#D8D8D8",
+        "borderTopWidth": 0.5,
+      }
+    } />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 20,
+        "paddingTop": 20,
+        "textAlign": "center",
+      }
+    }>
+    [missing \"en.weight_history\" translation]
+  </Text>
+  <ScrollView />
+</View>
+`;

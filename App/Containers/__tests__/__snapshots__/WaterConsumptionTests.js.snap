@@ -1,0 +1,137 @@
+exports[`test renders the water consumption page correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F5FF",
+      "flex": 1,
+      "marginTop": 64,
+    }
+  }>
+  <ScrollView
+    style={
+      Object {
+        "flex": 1,
+        "paddingTop": 10,
+      }
+    }>
+    <View
+      style={
+        Object {
+          "padding": 25,
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.cups_water_propt\" translation]
+      </Text>
+      <TextInput
+        keyboardType="numeric"
+        onChangeText={[Function]}
+        placeholder="Cups"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "marginBottom": 15,
+            "paddingLeft": 10,
+          }
+        } />
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#466ECC",
+            "borderRadius": 5,
+            "height": 45,
+            "justifyContent": "center",
+            "marginHorizontal": 25,
+            "marginVertical": 10,
+            "opacity": 1,
+          }
+        }
+        testID={undefined}>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 14,
+              "fontWeight": "bold",
+              "marginHorizontal": 5,
+              "marginVertical": 10,
+              "textAlign": "center",
+            }
+          }>
+          [MISSING \"EN.SUBMIT_WATER_RECORD\" TRANSLATION]
+        </Text>
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#466ECC",
+            "borderRadius": 5,
+            "height": 45,
+            "justifyContent": "center",
+            "marginHorizontal": 25,
+            "marginVertical": 10,
+            "opacity": 1,
+          }
+        }
+        testID={undefined}>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 14,
+              "fontWeight": "bold",
+              "marginHorizontal": 5,
+              "marginVertical": 10,
+              "textAlign": "center",
+            }
+          }>
+          [MISSING \"EN.VIEW_WATER_CONSUMPTION\" TRANSLATION]
+        </Text>
+      </View>
+    </View>
+  </ScrollView>
+</View>
+`;

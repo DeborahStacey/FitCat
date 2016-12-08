@@ -1,0 +1,62 @@
+exports[`test renders the device page correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F5FF",
+      "flex": 1,
+      "marginTop": 64,
+    }
+  }>
+  <ScrollView
+    style={
+      Object {
+        "flex": 1,
+        "paddingTop": 10,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2C457F",
+          "fontWeight": "bold",
+          "marginVertical": 5,
+          "textAlign": "center",
+        }
+      }>
+      Device type: 
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2C457F",
+          "fontWeight": "bold",
+          "marginVertical": 5,
+          "textAlign": "center",
+        }
+      }>
+      Battery level: 
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2C457F",
+          "fontWeight": "bold",
+          "marginVertical": 5,
+          "textAlign": "center",
+        }
+      }>
+      Last synced: 
+      December 12th 2016, 12:00:00 am
+    </Text>
+  </ScrollView>
+</View>
+`;

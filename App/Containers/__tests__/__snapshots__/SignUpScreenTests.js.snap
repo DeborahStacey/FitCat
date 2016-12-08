@@ -1,0 +1,362 @@
+exports[`test renders the sign up screen correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F1F5FF",
+      "flex": 1,
+      "marginTop": 64,
+    }
+  }>
+  <ScrollView
+    style={
+      Object {
+        "flex": 1,
+        "paddingTop": 10,
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2C457F",
+          "fontWeight": "bold",
+          "marginVertical": 5,
+          "textAlign": "center",
+        }
+      }>
+      [missing \"en.welcomeSignUp\" translation]
+    </Text>
+    <View
+      style={
+        Object {
+          "borderBottomColor": "#D8D8D8",
+          "borderBottomWidth": 1,
+          "borderTopColor": "#D8D8D8",
+          "borderTopWidth": 0.5,
+          "margin": 25,
+          "padding": 10,
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.fName\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.fName\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.lName\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.lName\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.email\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.email\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.password\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.password\" translation]"
+        placeholderTextColor="#787A7F"
+        secureTextEntry={true}
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.street\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.street\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.unit\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.unit\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.city\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.city\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.pCode\" translation]
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        onChangeText={[Function]}
+        placeholder="[missing \"en.pCode\" translation]"
+        placeholderTextColor="#787A7F"
+        style={
+          Object {
+            "borderColor": "gray",
+            "borderWidth": 1,
+            "height": 40,
+            "paddingLeft": 10,
+          }
+        } />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2C457F",
+            "fontWeight": "bold",
+            "marginVertical": 5,
+            "textAlign": "center",
+          }
+        }>
+        [missing \"en.locationId\" translation]
+      </Text>
+      <View
+        style={
+          Object {
+            "borderColor": "grey",
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "zIndex": 99,
+          }
+        }>
+        <Picker
+          itemStyle={
+            Object {
+              "color": "black",
+            }
+          }
+          onValueChange={[Function]}
+          selectedValue={-1}
+          style={
+            Object {
+              "flex": 95,
+            }
+          } />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "flex": 5,
+              "paddingTop": 13,
+            }
+          } />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingBottom": 50,
+          "paddingTop": 10,
+        }
+      }>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#466ECC",
+            "borderRadius": 5,
+            "height": 45,
+            "justifyContent": "center",
+            "marginHorizontal": 25,
+            "marginVertical": 10,
+            "opacity": 1,
+          }
+        }
+        testID={undefined}>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 14,
+              "fontWeight": "bold",
+              "marginHorizontal": 5,
+              "marginVertical": 10,
+              "textAlign": "center",
+            }
+          }>
+          [MISSING \"EN.SIGNUP\" TRANSLATION]
+        </Text>
+      </View>
+    </View>
+  </ScrollView>
+</View>
+`;

@@ -3,6 +3,7 @@ import { Text, View, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Moment from 'moment'
 import { default as DeviceInfo } from '../Services/DeviceInfo'
+import { default as MomentWrapper } from '../Services/MomentWrapper'
 
 import styles from './Styles/DeviceStyle'
 
@@ -50,7 +51,7 @@ export default class Device extends React.Component {
             Battery level: { this.state.device.battery }
           </Text>
           <Text style={styles.sectionText}>
-            Last synced: { Moment(this.state.device.lastSyncTime).format('MMMM Do YYYY, h:mm:ss a') }
+            Last synced: { MomentWrapper.getNewMoment(this.state.device.lastSyncTime).format('MMMM Do YYYY, h:mm:ss a') }
           </Text>
         </ScrollView>
       </View>
