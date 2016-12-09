@@ -103,7 +103,7 @@ exports[`test renders the cat distance page correctly 1`] = `
           "textAlign": "center",
         }
       }>
-      Thursday 01, December 2016 - Thursday 08, December 2016
+      Monday 12, December 2016 - Monday 19, December 2016
     </Text>
     <View
       accessibilityComponentType={undefined}
