@@ -95,6 +95,12 @@ export default class Dashboard extends React.Component {
         steps: responseJson.summary.steps,
         distance: responseJson.summary.distances[0].distance
       })
+
+      // We're doing this on the dashboard because the WellCat API does not appear
+      // to support sending data in bulk, so it would have to be individual requests
+      // for each day to send historical data. We also cannot assume the user will
+      // go to the steps page, so it doesn't make total sense to do it there.
+      WellCatManager.updateSteps(responseJson.summary.steps)
     })
 
     fetch(`https://api.fitbit.com/1/user/-/sleep/date/${date}.json`, {
