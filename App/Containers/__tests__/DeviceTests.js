@@ -7,7 +7,7 @@ import renderer from 'react-test-renderer'
 
 jest.mock('../../Services/MomentWrapper', () => {
   return {
-    getNewMoment: () => { return new Moment('20161212') }
+    getMomentFromDate: () => { return new Moment('20161212') }
   }
 })
 it('renders the device page correctly', () => {
