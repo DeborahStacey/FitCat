@@ -4,6 +4,7 @@ import { AsyncStorage, Text, TouchableHighlight, View, ScrollView } from 'react-
 import GraphComponent from '../Components/GraphComponent'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { default as StorageKeys } from '../Config/StorageKeys'
+import { default as MomentWrapper } from '../Services/MomentWrapper'
 
 import styles from './Styles/WeeklyActivityBaseStyle'
 
@@ -98,7 +99,7 @@ export default class WeeklyActivityBase extends React.Component {
             </View>
           </TouchableHighlight>
           <Text style={styles.sectionText}>
-            {this.state.selectedDate.format('dddd DD, MMMM YYYY') + ' - ' + Moment(this.state.selectedDate).add(7, 'day').format('dddd DD, MMMM YYYY')}
+            {MomentWrapper.getMomentFromDate(this.state.selectedDate).format('dddd DD, MMMM YYYY') + ' - ' + MomentWrapper.getMomentFromDate(this.state.selectedDate).add(7, 'day').format('dddd DD, MMMM YYYY')}
           </Text>
           <TouchableHighlight style={[styles.buttonTouchable, styles.blockStyle, {opacity: this.disabledStyle()}]} disabled={this.canMoveForward()} onPress={this.onPressRight}>
             <View style={[styles.buttonContainer, styles.blockStyle]}>

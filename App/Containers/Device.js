@@ -50,7 +50,7 @@ export default class Device extends React.Component {
             Battery level: { this.state.device.battery }
           </Text>
           <Text style={styles.sectionText}>
-            Last synced: { MomentWrapper.getNewMoment(this.state.device.lastSyncTime).format('MMMM Do YYYY, h:mm:ss a') }
+            Last synced: { MomentWrapper.getMomentFromDate(this.state.device.lastSyncTime).format('MMMM Do YYYY, h:mm:ss a') }
           </Text>
         </ScrollView>
       </View>
