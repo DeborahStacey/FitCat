@@ -215,6 +215,31 @@ module.exports = {
     })
   },
 
+  async updateSteps (steps) {
+    let catId = await AsyncStorage.getItem(StorageKeys.CAT_ID)
+    let wellcatUpdateStepsUrl = `${AppConfig.WELLCAT_BASE}/fitcat/steps`
+
+    return fetch(wellcatUpdateStepsUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'petID': catId,
+        'steps': steps,
+        'date': Moment().format('YYYY[-]MM[-]DD')
+      })
+    }).then((response) => {
+      if (response.ok) {
+        return
+      }
+    }).catch((error) => {
+      console.log(error)
+      return { code: -1, content: error }
+    })
+  },
+
   addCat: async (cat) => {
     let wellcatUrl = `${AppConfig.WELLCAT_BASE}/fitcat/register`
 
